@@ -1,0 +1,11 @@
+.link {
+	display: flex;
+	gap: 8px;
+	padding: 16px 20px;
+}
+
+.icon {
+	display: inline-flex;
+	width: 24px;
+	height: 24px;
+}
