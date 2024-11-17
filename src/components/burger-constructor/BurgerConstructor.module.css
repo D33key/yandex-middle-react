@@ -1,0 +1,33 @@
+.wrapper {
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+
+	max-height: 80dvh;
+	overflow-y: auto;
+
+	margin-left: 56px;
+}
+
+.item {
+	display: flex;
+	justify-content: flex-end;
+	align-items: center;
+
+	gap: 8px;
+}
+
+.amountWrapper {
+	display: flex;
+	align-items: center;
+	justify-content: flex-end;
+	gap: 40px;
+
+	margin-top: 40px;
+}
+
+.amount {
+	display: flex;
+	align-items: center;
+	gap: 8px;
+}

@@ -3,7 +3,8 @@
 	justify-content: space-between;
 	align-items: center;
 
-	margin-top: 40px;
+	padding: 16px 0;
+	background-color: rgba(28, 28, 33, 1);
 }
 
 .linksWrapper {
@@ -14,4 +15,18 @@
 
 .logo {
 	margin: 0 auto;
+
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex: 1 0;
+
+	&::after {
+		content: '';
+		flex: 1 0;
+	}
+
+	svg {
+		flex: 6 0;
+	}
 }
