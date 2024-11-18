@@ -1,21 +1,33 @@
-import { Tab } from '@ya.praktikum/react-developer-burger-ui-components';
 import { useState } from 'react';
+import Tabs from '../tab/Tab';
+import { MOCKE_DATE } from './data';
+import Ingredient from './burger-components/Ingredient';
 import cl from './BurgerIngredients.module.css';
 
 export default function BurgerIngredients() {
-	const [current, setCurrent] = useState('one');
+	const [categories, setCategories] = useState(() =>
+		MOCKE_DATE.reduce(
+			(acc, product) => {
+				if (product.type === 'bun') {
+					acc.bun.push(product);
+				} else if (product.type === 'main') {
+					acc.main.push(product);
+				} else if (product.type === 'sauce') {
+					acc.sauce.push(product);
+				}
+				return acc;
+			},
+			{ bun: [], main: [], sauce: [] },
+		),
+	);
+
 	return (
-		<div>
-			<div className={cl.tabWrapper}>
-				<Tab value='one' active={current === 'one'} onClick={setCurrent}>
-					Булки
-				</Tab>
-				<Tab value='two' active={current === 'two'} onClick={setCurrent}>
-					Соусы
-				</Tab>
-				<Tab value='three' active={current === 'three'} onClick={setCurrent}>
-					Начинки
-				</Tab>
+		<div style={{ overflow: 'auto', flex: '1', maxHeight: '75dvh' }}>
+			<Tabs />
+			<div className={cl.wrapper}>
+				<Ingredient data={categories.bun} title='Булки' />
+				<Ingredient data={categories.sauce} title='Соусы' />
+				<Ingredient data={categories.main} title='Начинки' />
 			</div>
 		</div>
 	);
