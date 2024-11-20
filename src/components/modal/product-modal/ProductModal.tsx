@@ -17,7 +17,7 @@ export default function ProductModal({
 			<div className={cl.modalContent} onClick={(e) => e.stopPropagation()}>
 				<div style={{ display: 'flex', justifyContent: 'space-between' }}>
 					<Subtitle as='h3'>Детали ингредиента</Subtitle>
-					<div onClick={onClose}>
+					<div onClick={onClose} style={{ cursor: 'pointer' }}>
 						<CloseIcon type='primary' />
 					</div>
 				</div>
