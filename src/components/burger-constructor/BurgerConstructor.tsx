@@ -10,7 +10,7 @@ import cl from './BurgerConstructor.module.css';
 import OrderModal from '../modal/order-modal/OrderModal';
 
 export default function BurgerConstructor() {
-	const [order, setOrder] = useState(MOCK_ORDER);
+	const [order] = useState(MOCK_ORDER);
 	const [showPopup, setShowPopup] = useState(false);
 
 	const amount = useMemo(
@@ -25,7 +25,7 @@ export default function BurgerConstructor() {
 					<div className={cl.item} key={index}>
 						{isDraggable && <DragIcon type='primary' />}
 						<ConstructorElement
-							type={item?.type as any}
+							type={item?.type as 'top' | 'bottom' | undefined}
 							isLocked={item?.isLocked}
 							text={item.name}
 							price={item.price}

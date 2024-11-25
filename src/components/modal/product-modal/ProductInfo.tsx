@@ -14,13 +14,7 @@ export default function ProductInfo({
 	carbohydrates,
 }: Props) {
 	return (
-		<div
-			style={{
-				display: 'flex',
-				flexDirection: 'row',
-				gap: '20px',
-			}}
-		>
+		<div className={`${cl.gap} flex flex-row`}>
 			<div className={cl.info}>
 				<p className='text text_type_main-default text_color_inactive'>
 					Калории,ккал

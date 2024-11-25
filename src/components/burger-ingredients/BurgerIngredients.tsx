@@ -1,12 +1,18 @@
 import { useState } from 'react';
 import Tabs from '../tab/Tab';
-import { MOCKE_DATE } from './data';
+import { MOCKE_DATE, MockeData } from './data';
 import Ingredient from './burger-components/Ingredient';
 import cl from './BurgerIngredients.module.css';
 
+interface Categories {
+	bun: MockeData[];
+	main: MockeData[];
+	sauce: MockeData[];
+}
+
 export default function BurgerIngredients() {
-	const [categories, setCategories] = useState(() =>
-		MOCKE_DATE.reduce(
+	const [categories] = useState(() =>
+		MOCKE_DATE.reduce<Categories>(
 			(acc, product) => {
 				if (product.type === 'bun') {
 					acc.bun.push(product);
@@ -22,9 +28,9 @@ export default function BurgerIngredients() {
 	);
 
 	return (
-		<div style={{ overflow: 'auto', flex: '1', maxHeight: '75dvh' }}>
+		<div className={cl.wrapper}>
 			<Tabs />
-			<div className={cl.wrapper}>
+			<div>
 				<Ingredient data={categories.bun} title='Булки' />
 				<Ingredient data={categories.sauce} title='Соусы' />
 				<Ingredient data={categories.main} title='Начинки' />

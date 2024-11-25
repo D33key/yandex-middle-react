@@ -15,19 +15,13 @@ export default function ProductModal({
 	return createPortal(
 		<div className={cl.modalOverlay} onClick={onClose}>
 			<div className={cl.modalContent} onClick={(e) => e.stopPropagation()}>
-				<div style={{ display: 'flex', justifyContent: 'space-between' }}>
+				<div className='flex justify-between'>
 					<Subtitle as='h3'>Детали ингредиента</Subtitle>
-					<div onClick={onClose} style={{ cursor: 'pointer' }}>
+					<div className='cursor-pointer' onClick={onClose}>
 						<CloseIcon type='primary' />
 					</div>
 				</div>
-				<div
-					style={{
-						display: 'flex',
-						flexDirection: 'column',
-						alignItems: 'center',
-					}}
-				>
+				<div className='flex flex-col items-center'>
 					<img src={product.image_large} alt={product.name} />
 					<p className={`text text_type_main-medium ${cl.name}`}>
 						{product.name}

@@ -1,2 +1,5 @@
 .wrapper {
+	overflow: auto;
+	flex: 1;
+	max-height: 75dvh;
 }

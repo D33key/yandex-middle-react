@@ -7,16 +7,18 @@ import './style/global.css';
 
 function App() {
 	return (
-		<main>
+		<>
 			<AppHeader />
-			<Section>
-				<Title>Соберите бургер</Title>
-				<div style={{ display: 'flex', justifyContent: 'space-between' }}>
-					<BurgerIngredients />
-					<BurgerConstructor />
-				</div>
-			</Section>
-		</main>
+			<main>
+				<Section>
+					<Title>Соберите бургер</Title>
+					<div className='flex justify-between'>
+						<BurgerIngredients />
+						<BurgerConstructor />
+					</div>
+				</Section>
+			</main>
+		</>
 	);
 }
 

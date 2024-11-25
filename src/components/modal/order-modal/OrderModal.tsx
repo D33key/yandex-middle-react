@@ -10,35 +10,25 @@ export default function OrderModal({ onClose }: Props) {
 	return createPortal(
 		<div className={cl.modalOverlay} onClick={onClose}>
 			<div className={cl.modalContent} onClick={(e) => e.stopPropagation()}>
-				<div style={{ display: 'flex', justifyContent: 'flex-end' }}>
-					<div onClick={onClose} style={{ cursor: 'pointer' }}>
+				<div className='flex justify-end'>
+					<div className='cursor-pointer' onClick={onClose}>
 						<CloseIcon type='primary' />
 					</div>
 				</div>
-				<div
-					style={{
-						display: 'flex',
-						flexDirection: 'column',
-						alignItems: 'center',
-						padding: '0 100px',
-					}}
-				>
+				<div className={`flex flex-col items-center ${cl.padding}`}>
 					<p
-						className={`text text_type_digits-large ${cl.digits}`}
-						style={{ marginTop: '16px' }}
+						className={`text text_type_digits-large ${cl.digits} ${cl['margin-top-1']}`}
 					>
 						034536
 					</p>
 					<p
-						className='text text_type_main-medium'
-						style={{ marginTop: '32px', marginBottom: '60px' }}
+						className={`text text_type_main-medium ${cl['margin-top-2']} ${cl['margin-bottom-3']}`}
 					>
 						идентификатор заказа
 					</p>
 					<img src='./src/images/done.png' alt='Заказ принят' />
 					<p
-						className='text text_type_main-default'
-						style={{ marginTop: '60px', marginBottom: '8px' }}
+						className={`text text_type_main-default ${cl['margin-top-3']} ${cl['margin-bottom-05']}`}
 					>
 						Ваш заказ начали готовить
 					</p>

@@ -25,3 +25,35 @@ a {
 	color: inherit;
 	text-decoration: inherit;
 }
+
+.flex {
+	display: flex;
+}
+
+.justify-center {
+	justify-content: center;
+}
+
+.justify-between {
+	justify-content: space-between;
+}
+
+.justify-end {
+	justify-content: flex-end;
+}
+
+.cursor-pointer {
+	cursor: pointer;
+}
+
+.flex-col {
+	flex-direction: column;
+}
+
+.flex-row {
+	flex-direction: row;
+}
+
+.items-center {
+	align-items: center;
+}
