@@ -2,23 +2,24 @@ import {
 	Counter,
 	CurrencyIcon,
 } from '@ya.praktikum/react-developer-burger-ui-components';
-import Subtitle from '../../ui/heading/Subtitle';
-import cl from './Ingredient.module.css';
-import { MockeData } from '../../../types';
 import { useState } from 'react';
-import ProductModal from '../../modal/product-modal/ProductModal';
+import Modal from '../../modal/Modal';
+import IngredientDetails from '../../modal/ingredient-details/IngredientDetails';
+import Subtitle from '../../ui/heading/Subtitle';
+import { CategoriesType } from '../types';
+import cl from './Ingredient.module.css';
 
 interface Props {
-	data: MockeData[];
+	data: CategoriesType[];
 	title: string;
 }
 
 export default function Ingredient({ data, title }: Props) {
-	const [selectedProduct, setSelectedProduct] = useState<MockeData | null>(
+	const [selectedProduct, setSelectedProduct] = useState<CategoriesType | null>(
 		null,
 	);
 
-	const handleProductClick = (product: MockeData) => {
+	const handleProductClick = (product: CategoriesType) => {
 		setSelectedProduct(product);
 	};
 
@@ -51,7 +52,9 @@ export default function Ingredient({ data, title }: Props) {
 			</div>
 
 			{selectedProduct && (
-				<ProductModal product={selectedProduct} onClose={closeProductInfo} />
+				<Modal headerTitle='Детали ингредиента' onClose={closeProductInfo}>
+					<IngredientDetails product={selectedProduct} />
+				</Modal>
 			)}
 		</div>
 	);

@@ -6,8 +6,9 @@ import {
 } from '@ya.praktikum/react-developer-burger-ui-components';
 import { useMemo, useState } from 'react';
 import { MOCK_ORDER } from '../../constansts';
+import Modal from '../modal/Modal';
+import OrderDetails from '../modal/order-details/OrderDetails';
 import cl from './BurgerConstructor.module.css';
-import OrderModal from '../modal/order-modal/OrderModal';
 
 export default function BurgerConstructor() {
 	const [order] = useState(MOCK_ORDER);
@@ -19,21 +20,23 @@ export default function BurgerConstructor() {
 	);
 	return (
 		<div className={cl.wrapper}>
-			{order.map((item, index) => {
-				const isDraggable = !item?.isLocked;
-				return (
-					<div className={cl.item} key={index}>
-						{isDraggable && <DragIcon type='primary' />}
-						<ConstructorElement
-							type={item?.type as 'top' | 'bottom' | undefined}
-							isLocked={item?.isLocked}
-							text={item.name}
-							price={item.price}
-							thumbnail={item.img}
-						/>
-					</div>
-				);
-			})}
+			<div className={cl.constructorElements}>
+				{order.map((item, index) => {
+					const isDraggable = !item?.isLocked;
+					return (
+						<div className={cl.item} key={index}>
+							{isDraggable && <DragIcon type='primary' />}
+							<ConstructorElement
+								type={item?.type as 'top' | 'bottom' | undefined}
+								isLocked={item?.isLocked}
+								text={item.name}
+								price={item.price}
+								thumbnail={item.img}
+							/>
+						</div>
+					);
+				})}
+			</div>
 			<div className={cl.amountWrapper}>
 				<div className={cl.amount}>
 					<p className='text text_type_digits-medium'>{amount}</p>
@@ -48,7 +51,11 @@ export default function BurgerConstructor() {
 					Оформить заказ
 				</Button>
 			</div>
-			{showPopup && <OrderModal onClose={() => setShowPopup(false)} />}
+			{showPopup && (
+				<Modal onClose={() => setShowPopup(false)}>
+					<OrderDetails />
+				</Modal>
+			)}
 		</div>
 	);
 }

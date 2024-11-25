@@ -1,12 +1,16 @@
 .wrapper {
 	display: flex;
 	flex-direction: column;
-	gap: 10px;
-
 	max-height: 75dvh;
-	overflow-y: auto;
 
 	margin-left: 56px;
+}
+
+.constructorElements {
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+	overflow-y: auto;
 }
 
 .item {
