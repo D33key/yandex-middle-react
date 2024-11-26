@@ -6,6 +6,7 @@ import Ingredient from './Ingredient';
 import cl from './Ingredients.module.css';
 import { tabs } from '../constants';
 import { SectionsRef } from '../../../hooks/useTab/useTab';
+import Loader from '../../loader/Loader';
 
 const Ingredients = forwardRef(function Ingredients(
 	{
@@ -26,9 +27,9 @@ const Ingredients = forwardRef(function Ingredients(
 	}, []);
 
 	return (
-		categories && (
-			<div className={cl.ingredientsWrapper} ref={ref}>
-				{tabs.map((tab) => (
+		<div className={cl.ingredientsWrapper} ref={ref}>
+			{categories ? (
+				tabs.map((tab) => (
 					<Ingredient
 						key={tab.id}
 						data={categories[tab.id]}
@@ -36,9 +37,11 @@ const Ingredients = forwardRef(function Ingredients(
 						section={tab.id}
 						setSections={setSections}
 					/>
-				))}
-			</div>
-		)
+				))
+			) : (
+				<Loader />
+			)}
+		</div>
 	);
 });
 

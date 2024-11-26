@@ -4,6 +4,7 @@ import Tabs from '../tab/Tab';
 import Ingredients from './burger-components/Ingredients';
 import cl from './BurgerIngredients.module.css';
 import { CategoriesType } from './types';
+import IngredientModal from '../modal/ingredient-details/IngredientModal';
 
 export interface Categories {
 	bun: CategoriesType[];
@@ -19,6 +20,7 @@ export default function BurgerIngredients() {
 		<div className={cl.wrapper}>
 			<Tabs current={currentTab} setCurrent={setCurrentTab} />
 			<Ingredients ref={root} setSections={setSections} />
+			<IngredientModal />
 		</div>
 	);
 }

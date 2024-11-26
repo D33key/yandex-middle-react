@@ -2,14 +2,13 @@ import {
 	Counter,
 	CurrencyIcon,
 } from '@ya.praktikum/react-developer-burger-ui-components';
-import { useState } from 'react';
-import Modal from '../../modal/Modal';
-import IngredientDetails from '../../modal/ingredient-details/IngredientDetails';
+import { SectionsRef } from '../../../hooks/useTab/useTab';
+import { TabName } from '../../tab/types';
 import Subtitle from '../../ui/heading/Subtitle';
 import { CategoriesType } from '../types';
 import cl from './Ingredient.module.css';
-import { TabName } from '../../tab/types';
-import { SectionsRef } from '../../../hooks/useTab/useTab';
+import { useAppDispatch } from '../../../hooks/rtk';
+import { openModal } from '../../../services/modal';
 
 interface Props {
 	data: CategoriesType[];
@@ -24,16 +23,10 @@ export default function Ingredient({
 	section,
 	setSections,
 }: Props) {
-	const [selectedProduct, setSelectedProduct] = useState<CategoriesType | null>(
-		null,
-	);
+	const dispatch = useAppDispatch();
 
 	const handleProductClick = (product: CategoriesType) => {
-		setSelectedProduct(product);
-	};
-
-	const closeProductInfo = () => {
-		setSelectedProduct(null);
+		dispatch(openModal(product));
 	};
 
 	return (
@@ -69,12 +62,6 @@ export default function Ingredient({
 					</div>
 				))}
 			</div>
-
-			{selectedProduct && (
-				<Modal headerTitle='Детали ингредиента' onClose={closeProductInfo}>
-					<IngredientDetails product={selectedProduct} />
-				</Modal>
-			)}
 		</div>
 	);
 }
