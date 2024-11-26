@@ -19,6 +19,7 @@ html {
 
 body {
 	background-color: rgba(19, 19, 22, 1);
+	overflow: hidden;
 }
 
 a {
@@ -60,4 +61,8 @@ a {
 
 .ml-auto {
 	margin-left: auto;
+}
+
+.self-center {
+	align-self: center;
 }

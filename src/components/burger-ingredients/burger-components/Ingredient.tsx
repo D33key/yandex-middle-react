@@ -8,13 +8,22 @@ import IngredientDetails from '../../modal/ingredient-details/IngredientDetails'
 import Subtitle from '../../ui/heading/Subtitle';
 import { CategoriesType } from '../types';
 import cl from './Ingredient.module.css';
+import { TabName } from '../../tab/types';
+import { SectionsRef } from '../../../hooks/useTab/useTab';
 
 interface Props {
 	data: CategoriesType[];
 	title: string;
+	section: TabName;
+	setSections: React.Dispatch<React.SetStateAction<SectionsRef>>;
 }
 
-export default function Ingredient({ data, title }: Props) {
+export default function Ingredient({
+	data,
+	title,
+	section,
+	setSections,
+}: Props) {
 	const [selectedProduct, setSelectedProduct] = useState<CategoriesType | null>(
 		null,
 	);
@@ -28,7 +37,13 @@ export default function Ingredient({ data, title }: Props) {
 	};
 
 	return (
-		<div className={cl.wrapper}>
+		<div
+			className={cl.wrapper}
+			data-section={section}
+			ref={(el) => {
+				setSections((prev) => ({ ...prev, [section]: el }));
+			}}
+		>
 			<Subtitle>{title}</Subtitle>
 			<div className={cl.productsArrayWrapper}>
 				{data.map((product) => (
@@ -39,8 +54,12 @@ export default function Ingredient({ data, title }: Props) {
 					>
 						<div className={cl.img}>
 							<img src={product.image} alt={product.name} />
-							{product.__v > 0 && (
-								<Counter count={product.__v} size='default' extraClass='m-1' />
+							{product.amount > 0 && (
+								<Counter
+									count={product.amount}
+									size='default'
+									extraClass='m-1'
+								/>
 							)}
 						</div>
 						<p className={`text text_type_digits-default ${cl.price}`}>
