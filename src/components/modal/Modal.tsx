@@ -3,6 +3,7 @@ import ModalOverlay from './ModalOverlay';
 import Subtitle from '../ui/heading/Subtitle';
 import { CloseIcon } from '@ya.praktikum/react-developer-burger-ui-components';
 import cl from './Modal.module.css';
+import { useEffect } from 'react';
 
 interface ModalProps {
 	headerTitle?: string | null;
@@ -15,6 +16,19 @@ export default function Modal({
 	onClose,
 	children,
 }: ModalProps) {
+	useEffect(() => {
+		const handleEscDown = (event: KeyboardEvent) => {
+			if (event.key === 'Escape') {
+				onClose();
+			}
+		};
+
+		document.addEventListener('keydown', handleEscDown);
+
+		return () => {
+			document.removeEventListener('keydown', handleEscDown);
+		};
+	}, []);
 	return createPortal(
 		<ModalOverlay onClose={onClose}>
 			<div className='flex justify-between items-center'>
