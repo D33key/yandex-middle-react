@@ -41,7 +41,7 @@ export default function BurgerIngredients() {
 		fetchCategories();
 
 		return () => {
-			controller.abort('Unmount');
+			controller.abort('Request was aborted');
 		};
 	}, []);
 
