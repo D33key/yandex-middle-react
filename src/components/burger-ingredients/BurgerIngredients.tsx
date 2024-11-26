@@ -18,21 +18,24 @@ export default function BurgerIngredients() {
 		const controller = new AbortController();
 
 		const fetchCategories = async () => {
-			const response = await fetch(
-				'https://norma.nomoreparties.space/api/ingredients',
-				{ signal: controller.signal },
-			);
+			try {
+				const response = await fetch(
+					'https://norma.nomoreparties.space/api/ingredients',
+					{ signal: controller.signal },
+				);
 
-			if (!response.ok) {
-				return;
+				if (!response.ok) {
+					return Promise.reject(`Ошибка ${response.status}`);
+				}
+
+				const data = await response.json();
+
+				const transformedData = transformData(data.data);
+
+				setCategories(transformedData);
+			} catch (error) {
+				console.error(error);
 			}
-
-			const data = await response.json();
-			console.log(data.data)
-
-			const transformedData = transformData(data.data);
-
-			setCategories(transformedData);
 		};
 
 		fetchCategories();
