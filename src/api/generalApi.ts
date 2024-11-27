@@ -18,6 +18,20 @@ class GeneralApi extends BaseApi {
 
 		return await response.json();
 	}
+
+	async order(data: { ingredients: string[] }, signal?: AbortSignal) {
+		const response = await this.post(URLS.orders, {
+			data,
+			signal,
+			withCredentials: 'same-origin',
+		});
+
+		if (!response.ok) {
+			return Promise.reject(`Ошибка ${response.status}`);
+		}
+
+		return await response.json();
+	}
 }
 
 const generalAPI = new GeneralApi();

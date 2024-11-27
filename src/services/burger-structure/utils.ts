@@ -6,18 +6,46 @@ export const addIngredient: CaseReducer<
 	BurgerStructureState[],
 	PayloadAction<CategoriesType>
 > = (state, action) => {
-	const isBun = action.payload.type === 'bun';
+	const { type } = action.payload;
+	const isBun = type === 'bun';
+	const isBunAlreadyExist =
+		state.findIndex((item) => item.type === 'bun') !== -1;
 
 	if (isBun) {
-		const firstBun = createBun(action.payload);
-		state.unshift(firstBun);
-
-		const secondBun = createBun(action.payload, 'bottom');
-		state.push(secondBun);
+		handleBun(state, action.payload, isBunAlreadyExist);
 	} else {
-		state.push(action.payload);
+		handleIngredient(state, action.payload, isBunAlreadyExist);
 	}
 };
+
+function handleBun(
+	state: BurgerStructureState[],
+	payload: CategoriesType,
+	isBunAlreadyExist: boolean,
+) {
+	const topBun = createBun(payload);
+	const bottomBun = createBun(payload, 'bottom');
+
+	if (isBunAlreadyExist) {
+		state[0] = createBun(payload);
+		state[state.length - 1] = createBun(payload, 'bottom');
+	} else {
+		state.unshift(topBun);
+		state.push(bottomBun);
+	}
+}
+
+function handleIngredient(
+	state: BurgerStructureState[],
+	payload: CategoriesType,
+	isBunAlreadyExist: boolean,
+) {
+	if (!isBunAlreadyExist) {
+		state.push(payload);
+	} else {
+		state.splice(state.length - 1, 0, payload);
+	}
+}
 
 function createBun(
 	obj: CategoriesType,

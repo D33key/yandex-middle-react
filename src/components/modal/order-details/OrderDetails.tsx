@@ -1,12 +1,12 @@
 import cl from './OrderDetails.module.css';
 
-export default function OrderDetails() {
+export default function OrderDetails({ orderNumber }: { orderNumber: number }) {
 	return (
 		<div className={`flex flex-col items-center ${cl.padding}`}>
 			<p
 				className={`text text_type_digits-large ${cl.digits} ${cl['margin-top-1']}`}
 			>
-				034536
+				{orderNumber}
 			</p>
 			<p
 				className={`text text_type_main-medium ${cl['margin-top-2']} ${cl['margin-bottom-3']}`}

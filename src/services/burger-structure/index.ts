@@ -8,8 +8,14 @@ export const burgerStructure = createSlice({
 	initialState: [] as BurgerStructureState[],
 	reducers: {
 		addIngredient: addIngredientCase,
-		removeIngredient: (state, action: PayloadAction<CategoriesType>) => {
-			state.filter((ingredient) => ingredient !== action.payload);
+		removeIngredient: (state, action: PayloadAction<CategoriesType['_id']>) => {
+			const index = state.findIndex(
+				(ingredient) => ingredient._id === action.payload,
+			);
+
+			if (index !== -1) {
+				state.splice(index, 1);
+			}
 		},
 	},
 });

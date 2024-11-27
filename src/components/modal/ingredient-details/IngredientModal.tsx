@@ -10,7 +10,7 @@ function IngredientModal() {
 	const dispatch = useAppDispatch();
 
 	return (
-		selectedProduct && (
+		selectedProduct?.type && (
 			<Modal
 				headerTitle='Детали ингредиента'
 				onClose={() => dispatch(closeModal())}
