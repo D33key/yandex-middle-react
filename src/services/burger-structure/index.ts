@@ -17,9 +17,18 @@ export const burgerStructure = createSlice({
 				state.splice(index, 1);
 			}
 		},
+		moveIngredient: (
+			state,
+			action: PayloadAction<{ dragIndex: number; hoverIndex: number }>,
+		) => {
+			const { dragIndex, hoverIndex } = action.payload;
+			const [movedItem] = state.splice(dragIndex, 1);
+			state.splice(hoverIndex, 0, movedItem);
+		},
 	},
 });
 
-export const { addIngredient, removeIngredient } = burgerStructure.actions;
+export const { addIngredient, removeIngredient, moveIngredient } =
+	burgerStructure.actions;
 
 export default burgerStructure.reducer;

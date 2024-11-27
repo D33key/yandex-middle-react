@@ -7,20 +7,9 @@
 	margin-left: 56px;
 }
 
-.constructorElements {
-	display: flex;
-	flex-direction: column;
-	gap: 10px;
-	overflow-y: auto;
-}
 
-.item {
-	display: flex;
-	justify-content: flex-end;
-	align-items: center;
 
-	gap: 8px;
-}
+
 
 .amountWrapper {
 	display: flex;
