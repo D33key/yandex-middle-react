@@ -3,6 +3,7 @@ import {
 	CurrencyIcon,
 } from '@ya.praktikum/react-developer-burger-ui-components';
 import cl from './Amount.module.css';
+import Typography from '../../ui/typography/Typography';
 
 export default function Amount({
 	amount,
@@ -14,7 +15,9 @@ export default function Amount({
 	return (
 		<div className={cl.amountWrapper}>
 			<div className={cl.amount}>
-				<p className='text text_type_digits-medium'>{amount}</p>
+				<Typography type='digits' size='medium'>
+					{amount}
+				</Typography>
 				<CurrencyIcon type='primary' />
 			</div>
 			<Button

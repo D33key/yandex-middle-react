@@ -1,16 +1,15 @@
-import { CategoriesType } from '../../burger-ingredients/types';
-import ProductInfo from './IngredientInfo';
+import { IngredientProps } from '../../burger-ingredients/types';
+import Typography from '../../ui/typography/Typography';
 import cl from './IngredientDetails.module.css';
+import ProductInfo from './IngredientInfo';
 
-export default function IngredientDetails({
-	product,
-}: {
-	product: CategoriesType;
-}) {
+export default function IngredientDetails({ product }: IngredientProps) {
 	return (
 		<div className='flex flex-col items-center'>
 			<img src={product.image_large} alt={product.name} />
-			<p className={`text text_type_main-medium ${cl.name}`}>{product.name}</p>
+			<Typography size='medium' extraClass={cl.name}>
+				{product.name}
+			</Typography>
 			<ProductInfo
 				calories={product.calories}
 				carbohydrates={product.carbohydrates}

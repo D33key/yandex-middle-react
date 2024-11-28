@@ -11,6 +11,7 @@ import { RootState } from '../../../services/store';
 import Subtitle from '../../ui/heading/Subtitle';
 import { AmountProps, IngredientProps, IngredientWrapperProps } from '../types';
 import cl from './Ingredient.module.css';
+import Typography from '../../ui/typography/Typography';
 
 export default function IngredientWrapper({
 	data,
@@ -56,10 +57,10 @@ function Ingredient({ product }: IngredientProps) {
 				<img src={product.image} alt={product.name} />
 				<Amount id={product._id} type={product.type} />
 			</div>
-			<p className={`text text_type_digits-default ${cl.price}`}>
+			<Typography type='digits' extraClass={cl.price}>
 				{product.price} <CurrencyIcon type='primary' />
-			</p>
-			<p className='text text_type_main-default'>{product.name}</p>
+			</Typography>
+			<Typography>{product.name}</Typography>
 		</div>
 	);
 }
