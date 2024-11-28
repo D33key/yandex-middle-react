@@ -6,22 +6,3 @@
 
 	margin-left: 56px;
 }
-
-
-
-
-
-.amountWrapper {
-	display: flex;
-	align-items: center;
-	justify-content: flex-end;
-	gap: 40px;
-
-	margin-top: 40px;
-}
-
-.amount {
-	display: flex;
-	align-items: center;
-	gap: 8px;
-}

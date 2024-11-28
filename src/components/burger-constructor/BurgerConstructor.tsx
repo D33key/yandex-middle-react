@@ -1,12 +1,11 @@
 import { useDrop } from 'react-dnd';
-import OrderModal from '../modal/order-details/OrderModal';
-import cl from './BurgerConstructor.module.css';
-import ConstructorInfo from './ConstructorInfo';
 import { DRAG_TYPE_INGREDIENT } from '../../constansts';
 import { useAppDispatch } from '../../hooks/rtk';
 import { addIngredient } from '../../services/burger-structure';
 import { CategoriesType } from '../burger-ingredients/types';
-import { updateAmount } from '../../services/ingredients';
+import OrderModal from '../modal/order-details/OrderModal';
+import cl from './BurgerConstructor.module.css';
+import Constructor from './constructor/Constructor';
 
 function Wrapper({ children }: { children: React.ReactNode }) {
 	const dispatch = useAppDispatch();
@@ -31,7 +30,7 @@ function Wrapper({ children }: { children: React.ReactNode }) {
 function BurgerConstructor() {
 	return (
 		<BurgerConstructor.Wrapper>
-			<ConstructorInfo />
+			<Constructor />
 			<OrderModal />
 		</BurgerConstructor.Wrapper>
 	);

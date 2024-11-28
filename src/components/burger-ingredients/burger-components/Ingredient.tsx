@@ -2,31 +2,22 @@ import {
 	Counter,
 	CurrencyIcon,
 } from '@ya.praktikum/react-developer-burger-ui-components';
-import { SectionsRef } from '../../../hooks/useTab/useTab';
-import { TabName } from '../../tab/types';
-import Subtitle from '../../ui/heading/Subtitle';
-import { CategoriesType } from '../types';
-import cl from './Ingredient.module.css';
-import { useAppDispatch, useAppSelector } from '../../../hooks/rtk';
-import { openModal } from '../../../services/modal';
+import { useMemo } from 'react';
 import { useDrag } from 'react-dnd';
 import { DRAG_TYPE_INGREDIENT } from '../../../constansts';
+import { useAppDispatch, useAppSelector } from '../../../hooks/rtk';
+import { openModal } from '../../../services/modal';
 import { RootState } from '../../../services/store';
-import { useMemo } from 'react';
-
-interface Props {
-	data: CategoriesType[];
-	title: string;
-	section: TabName;
-	setSections: React.Dispatch<React.SetStateAction<SectionsRef>>;
-}
+import Subtitle from '../../ui/heading/Subtitle';
+import { AmountProps, IngredientProps, IngredientWrapperProps } from '../types';
+import cl from './Ingredient.module.css';
 
 export default function IngredientWrapper({
 	data,
 	title,
 	section,
 	setSections,
-}: Props) {
+}: IngredientWrapperProps) {
 	return (
 		<div
 			className={cl.wrapper}
@@ -45,14 +36,14 @@ export default function IngredientWrapper({
 	);
 }
 
-function Ingredient({ product }: { product: CategoriesType }) {
+function Ingredient({ product }: IngredientProps) {
 	const [_, drag] = useDrag(() => ({
 		type: DRAG_TYPE_INGREDIENT,
 		item: product,
 	}));
 	const dispatch = useAppDispatch();
 
-	const handleProductClick = (product: CategoriesType) => {
+	const handleProductClick = (product: IngredientProps['product']) => {
 		dispatch(openModal(product));
 	};
 	return (
@@ -73,7 +64,7 @@ function Ingredient({ product }: { product: CategoriesType }) {
 	);
 }
 
-function Amount({ id, type }: { id: string; type: TabName }) {
+function Amount({ id, type }: AmountProps) {
 	const order = useAppSelector((state: RootState) => state.burgerStructure);
 
 	const amount = useMemo(() => {

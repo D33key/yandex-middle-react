@@ -4,14 +4,14 @@ import {
 } from '@ya.praktikum/react-developer-burger-ui-components';
 import { useRef } from 'react';
 import { useDrag, useDrop, XYCoord } from 'react-dnd';
-import { DRAG_TYPE_ITEM } from '../../constansts';
-import { useAppDispatch } from '../../hooks/rtk';
+import { DRAG_TYPE_ITEM } from '../../../constansts';
+import { useAppDispatch } from '../../../hooks/rtk';
 import {
 	moveIngredient,
 	removeIngredient,
-} from '../../services/burger-structure';
-import { BurgerStructureState } from '../../services/burger-structure/types';
-import { TabName } from '../tab/types';
+} from '../../../services/burger-structure';
+import { BurgerStructureState } from '../../../services/burger-structure/types';
+import { TabName } from '../../tab/types';
 import cl from './Element.module.css';
 
 function Element({
