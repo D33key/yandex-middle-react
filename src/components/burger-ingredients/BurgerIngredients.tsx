@@ -1,5 +1,5 @@
 import { useRef } from 'react';
-import { useTab } from '../../hooks/useTab/useTab';
+import { useTab } from '../../hooks/useTab';
 import Tabs from '../tab/Tab';
 import Ingredients from './burger-components/Ingredients';
 import cl from './BurgerIngredients.module.css';

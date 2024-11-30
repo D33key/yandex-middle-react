@@ -1,5 +1,5 @@
 import { Counter } from '@ya.praktikum/react-developer-burger-ui-components';
-import { useAppSelector } from '../../../hooks/rtk';
+import { useAppSelector } from '../../../hooks/useRTK';
 import { RootState } from '../../../services/store';
 import type { AmountProps } from '../types';
 

@@ -1,4 +1,4 @@
-import { useAppDispatch, useAppSelector } from '../../../hooks/rtk';
+import { useAppDispatch, useAppSelector } from '../../../hooks/useRTK';
 import { closeModal } from '../../../services/modal';
 import { RootState } from '../../../services/store';
 import Modal from '../Modal';

@@ -1,4 +1,4 @@
-import { useAppDispatch, useAppSelector } from '../../../hooks/rtk';
+import { useAppDispatch, useAppSelector } from '../../../hooks/useRTK';
 import { fetchOrder } from '../../../services/modal/asyncThunk';
 import { RootState } from '../../../services/store';
 import Amount from '../amount/Amount';

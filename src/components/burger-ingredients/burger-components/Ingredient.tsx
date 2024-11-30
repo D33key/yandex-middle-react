@@ -1,7 +1,7 @@
 import { CurrencyIcon } from '@ya.praktikum/react-developer-burger-ui-components';
 import { useDrag } from 'react-dnd';
 import { DRAG_TYPE_INGREDIENT } from '../../../constansts';
-import { useAppDispatch } from '../../../hooks/rtk';
+import { useAppDispatch } from '../../../hooks/useRTK';
 import { openModal } from '../../../services/modal';
 import Subtitle from '../../ui/heading/Subtitle';
 import Typography from '../../ui/typography/Typography';

@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { useAppDispatch } from '../../hooks/rtk';
+import { useAppDispatch } from '../useRTK';
 import { fetchIngredients } from '../../services/ingredients/asyncThunk';
 
 export function useFetchIngredients() {

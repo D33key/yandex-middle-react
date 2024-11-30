@@ -1,4 +1,4 @@
-import { SectionsRef } from '../../hooks/useTab/useTab';
+import { SectionsRef } from '../../hooks/useTab';
 import { TabName } from '../tab/types';
 
 export interface CategoriesType {

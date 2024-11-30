@@ -1,5 +1,5 @@
 import { memo } from 'react';
-import { useAppDispatch, useAppSelector } from '../../../hooks/rtk';
+import { useAppDispatch, useAppSelector } from '../../../hooks/useRTK';
 import { RootState } from '../../../services/store';
 import Modal from '../Modal';
 import IngredientDetails from './IngredientDetails';

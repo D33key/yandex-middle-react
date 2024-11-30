@@ -1,7 +1,7 @@
 import { CloseIcon } from '@ya.praktikum/react-developer-burger-ui-components';
 import { createPortal } from 'react-dom';
 import Subtitle from '../ui/heading/Subtitle';
-import { useCloseModalWhenPress } from './hook';
+import { useCloseModalWhenPress } from '../../hooks/useCloseModalWhenPress';
 import cl from './Modal.module.css';
 import ModalOverlay from './ModalOverlay';
 

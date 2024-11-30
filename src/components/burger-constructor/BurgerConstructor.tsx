@@ -1,6 +1,6 @@
 import { useDrop } from 'react-dnd';
 import { DRAG_TYPE_INGREDIENT } from '../../constansts';
-import { useAppDispatch } from '../../hooks/rtk';
+import { useAppDispatch } from '../../hooks/useRTK';
 import { addIngredient } from '../../services/burger-structure';
 import { CategoriesType } from '../burger-ingredients/types';
 import OrderModal from '../modal/order-details/OrderModal';

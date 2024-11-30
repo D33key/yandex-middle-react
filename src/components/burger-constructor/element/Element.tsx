@@ -3,11 +3,11 @@ import {
 	DragIcon,
 } from '@ya.praktikum/react-developer-burger-ui-components';
 import { useRef } from 'react';
-import { useAppDispatch } from '../../../hooks/rtk';
+import { useAppDispatch } from '../../../hooks/useRTK';
 import { removeIngredient } from '../../../services/burger-structure';
 import { BurgerStructureState } from '../../../services/burger-structure/types';
 import cl from './Element.module.css';
-import { useDnD } from './hook';
+import { useDnD } from '../../../hooks/useDnD';
 
 export interface ElementProps {
 	item: BurgerStructureState;

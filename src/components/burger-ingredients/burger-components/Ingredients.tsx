@@ -1,9 +1,9 @@
 import { forwardRef, memo } from 'react';
-import { useAppSelector } from '../../../hooks/rtk';
+import { useAppSelector } from '../../../hooks/useRTK';
 import { RootState } from '../../../services/store';
 import Loader from '../../loader/Loader';
 import { TABS } from '../constants';
-import { useFetchIngredients } from '../hook';
+import { useFetchIngredients } from '../../../hooks/useFetchIngredients';
 import { IngredientsProps } from '../types';
 import Ingredient from './Ingredient';
 import cl from './Ingredients.module.css';
