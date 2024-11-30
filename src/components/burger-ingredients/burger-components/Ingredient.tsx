@@ -1,17 +1,13 @@
-import {
-	Counter,
-	CurrencyIcon,
-} from '@ya.praktikum/react-developer-burger-ui-components';
-import { useMemo } from 'react';
+import { CurrencyIcon } from '@ya.praktikum/react-developer-burger-ui-components';
 import { useDrag } from 'react-dnd';
 import { DRAG_TYPE_INGREDIENT } from '../../../constansts';
-import { useAppDispatch, useAppSelector } from '../../../hooks/rtk';
+import { useAppDispatch } from '../../../hooks/rtk';
 import { openModal } from '../../../services/modal';
-import { RootState } from '../../../services/store';
 import Subtitle from '../../ui/heading/Subtitle';
-import { AmountProps, IngredientProps, IngredientWrapperProps } from '../types';
-import cl from './Ingredient.module.css';
 import Typography from '../../ui/typography/Typography';
+import { IngredientProps, IngredientWrapperProps } from '../types';
+import Amount from './Amount';
+import cl from './Ingredient.module.css';
 
 export default function IngredientWrapper({
 	data,
@@ -62,19 +58,5 @@ function Ingredient({ product }: IngredientProps) {
 			</Typography>
 			<Typography>{product.name}</Typography>
 		</div>
-	);
-}
-
-function Amount({ id, type }: AmountProps) {
-	const order = useAppSelector((state: RootState) => state.burgerStructure);
-
-	const amount = useMemo(() => {
-		return type === 'bun'
-			? order.filter((item) => item._id === id).length - 1
-			: order.filter((item) => item._id === id).length;
-	}, [order]);
-
-	return (
-		amount > 0 && <Counter count={amount} size='default' extraClass='m-1' />
 	);
 }

@@ -5,7 +5,7 @@ export interface Tabs {
 	title: string;
 }
 
-export const tabs: Tabs[] = [
+export const TABS: Tabs[] = [
 	{
 		id: 'bun',
 		title: 'Булки',

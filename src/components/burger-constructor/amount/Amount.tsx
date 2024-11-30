@@ -5,13 +5,12 @@ import {
 import cl from './Amount.module.css';
 import Typography from '../../ui/typography/Typography';
 
-export default function Amount({
-	amount,
-	handleSubmit,
-}: {
+interface AmountProps {
 	amount: number;
 	handleSubmit: () => Promise<void>;
-}) {
+}
+
+export default function Amount({ amount, handleSubmit }: AmountProps) {
 	return (
 		<div className={cl.amountWrapper}>
 			<div className={cl.amount}>
