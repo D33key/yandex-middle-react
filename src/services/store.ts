@@ -9,6 +9,7 @@ export const store = configureStore({
 		burgerStructure,
 		modalInfo,
 	},
+	devTools: import.meta.env.MODE !== 'production',
 });
 
 export type RootState = ReturnType<typeof store.getState>;
