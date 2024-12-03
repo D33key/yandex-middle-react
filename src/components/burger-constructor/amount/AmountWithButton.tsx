@@ -2,7 +2,7 @@ import {
 	Button,
 	CurrencyIcon,
 } from '@ya.praktikum/react-developer-burger-ui-components';
-import cl from './Amount.module.css';
+import cl from './AmountWithButton.module.css';
 import Typography from '../../ui/typography/Typography';
 
 interface AmountProps {
@@ -10,7 +10,10 @@ interface AmountProps {
 	handleSubmit: () => Promise<void>;
 }
 
-export default function Amount({ amount, handleSubmit }: AmountProps) {
+export default function AmountWithButton({
+	amount,
+	handleSubmit,
+}: AmountProps) {
 	return (
 		<div className={cl.amountWrapper}>
 			<div className={cl.amount}>

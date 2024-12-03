@@ -66,3 +66,7 @@ a {
 .self-center {
 	align-self: center;
 }
+
+.relative {
+	position: relative;
+}

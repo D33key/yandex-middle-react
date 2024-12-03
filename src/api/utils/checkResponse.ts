@@ -3,5 +3,5 @@ export default async function checkResponse(response: Response) {
 		return Promise.reject(`Ошибка ${response.status}`);
 	}
 
-	return await response.json();
+	return response;
 }

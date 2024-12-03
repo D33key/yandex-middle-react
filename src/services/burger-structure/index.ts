@@ -43,10 +43,11 @@ export const burgerStructure = createSlice({
 			const [movedItem] = state.splice(dragIndex, 1);
 			state.splice(hoverIndex, 0, movedItem);
 		},
+		clearCart: (state) => ((state = []), state),
 	},
 });
 
-export const { addIngredient, removeIngredient, moveIngredient } =
+export const { addIngredient, removeIngredient, moveIngredient, clearCart } =
 	burgerStructure.actions;
 
 export default burgerStructure.reducer;

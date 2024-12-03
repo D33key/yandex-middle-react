@@ -23,7 +23,7 @@ export default function Modal({
 			<div className='flex justify-between items-center'>
 				{headerTitle && (
 					<Subtitle as='h3' isWide>
-						Детали ингредиента
+						{headerTitle}
 					</Subtitle>
 				)}
 				<div

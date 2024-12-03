@@ -12,7 +12,7 @@ class GeneralApi extends BaseApi {
 			withCredentials: 'same-origin',
 		});
 
-		return response;
+		return await response.json();
 	}
 
 	async order(data: { ingredients: string[] }, signal?: AbortSignal) {
@@ -22,7 +22,7 @@ class GeneralApi extends BaseApi {
 			withCredentials: 'same-origin',
 		});
 
-		return response;
+		return await response.json();
 	}
 }
 

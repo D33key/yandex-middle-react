@@ -1,7 +1,8 @@
 import Typography from '../ui/typography/Typography';
 import cl from './Loader.module.css';
+import Wrapper from './Wrapper';
 
-export default function Loader() {
+function Loader() {
 	return (
 		<div className={cl.wrapper}>
 			<span className={cl.spinner}></span>
@@ -9,3 +10,7 @@ export default function Loader() {
 		</div>
 	);
 }
+
+Loader.Wrapper = Wrapper;
+
+export default Loader;

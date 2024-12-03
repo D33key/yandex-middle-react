@@ -1,7 +1,8 @@
 import { useAppDispatch, useAppSelector } from '../../../hooks/useRTK';
+import { clearCart } from '../../../services/burger-structure';
 import { fetchOrder } from '../../../services/modal/asyncThunk';
 import { RootState } from '../../../services/store';
-import Amount from '../amount/Amount';
+import AmountWithButton from '../amount/AmountWithButton';
 import EmptyCart from '../amount/EmptyCart';
 import Element from '../element/Element';
 import ElementWrapper from '../element/ElementWrapper';
@@ -14,6 +15,7 @@ function Constructor() {
 
 	const handleSubmit = async () => {
 		await dispatch(fetchOrder(order));
+		dispatch(clearCart());
 	};
 
 	if (!order.length) {
@@ -27,7 +29,7 @@ function Constructor() {
 					<Element key={item.id} item={item} index={index} />
 				))}
 			</ElementWrapper>
-			<Amount amount={amount} handleSubmit={handleSubmit} />
+			<AmountWithButton amount={amount} handleSubmit={handleSubmit} />
 		</>
 	);
 }
