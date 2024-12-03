@@ -12,11 +12,7 @@ class GeneralApi extends BaseApi {
 			withCredentials: 'same-origin',
 		});
 
-		if (!response.ok) {
-			return Promise.reject(`Ошибка ${response.status}`);
-		}
-
-		return await response.json();
+		return response;
 	}
 
 	async order(data: { ingredients: string[] }, signal?: AbortSignal) {
@@ -26,11 +22,7 @@ class GeneralApi extends BaseApi {
 			withCredentials: 'same-origin',
 		});
 
-		if (!response.ok) {
-			return Promise.reject(`Ошибка ${response.status}`);
-		}
-
-		return await response.json();
+		return response;
 	}
 }
 

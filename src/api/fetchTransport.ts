@@ -1,5 +1,6 @@
 import { APIMethod, IMETHOD, Options } from './types';
-import { queryStringify } from './utils';
+import checkResponse from './utils/checkResponse';
+import { queryStringify } from './utils/queryStringify';
 
 export default class FetchTransport {
 	private corePath: string;
@@ -28,7 +29,10 @@ export default class FetchTransport {
 		return this.request(url, { ...options, method: IMETHOD.DELETE });
 	};
 
-	private request: APIMethod = (url, options = { method: IMETHOD.GET }) => {
+	private request: APIMethod = async (
+		url,
+		options = { method: IMETHOD.GET },
+	) => {
 		const {
 			method,
 			data = {},
@@ -42,22 +46,26 @@ export default class FetchTransport {
 				this.corePath + url + queryStringify(data as Record<string, string>),
 			);
 
-			return fetch(correctedUrl.href, {
+			const response = await fetch(correctedUrl.href, {
 				method,
 				headers,
 				credentials,
 				signal,
 			});
+
+			return checkResponse(response);
 		}
 
 		const body = data instanceof FormData ? data : JSON.stringify(data);
 
-		return fetch(this.corePath + url, {
+		const response = await fetch(this.corePath + url, {
 			method,
 			headers,
 			body,
 			credentials,
 			signal,
 		});
+
+		return checkResponse(response);
 	};
 }
