@@ -23,11 +23,9 @@ function Constructor() {
 	return (
 		<>
 			<ElementWrapper>
-				{order.map((item, index) => {
-					return (
-						<Element key={item._id + ' ' + index} item={item} index={index} />
-					);
-				})}
+				{order.map((item, index) => (
+					<Element key={item.id} item={item} index={index} />
+				))}
 			</ElementWrapper>
 			<Amount amount={amount} handleSubmit={handleSubmit} />
 		</>

@@ -51,9 +51,17 @@ function createBun(
 	obj: CategoriesType,
 	align: 'top' | 'bottom' = 'top',
 ): BurgerStructureState {
-	return {
+	const bun = {
 		...obj,
 		isLocked: true,
 		align,
-	};
+	} as BurgerStructureState;
+
+	if (align === 'bottom') {
+		bun.id = bun.secondBunId;
+	}
+
+	delete bun.secondBunId;
+	
+	return bun;
 }
