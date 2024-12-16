@@ -1,52 +1,25 @@
+import Typography from '../../ui/typography/Typography';
+import { INGREDIENT_INFO } from './constants';
 import cl from './IngredientInfo.module.css';
 
-type Props = {
+export interface InfoProps {
 	proteins: number;
 	fat: number;
 	carbohydrates: number;
 	calories: number;
-};
+}
 
-export default function IngredientInfo({
-	fat,
-	proteins,
-	calories,
-	carbohydrates,
-}: Props) {
+export default function IngredientInfo(props: InfoProps) {
 	return (
 		<div className={`${cl.gap} flex flex-row`}>
-			<div className={cl.info}>
-				<p className='text text_type_main-default text_color_inactive'>
-					Калории,ккал
-				</p>
-				<p className='text text_type_digits-default text_color_inactive'>
-					{calories}
-				</p>
-			</div>
-			<div className={cl.info}>
-				<p className='text text_type_main-default text_color_inactive'>
-					Белки, г
-				</p>
-				<p className='text text_type_digits-default text_color_inactive'>
-					{proteins}
-				</p>
-			</div>
-			<div className={cl.info}>
-				<p className='text text_type_main-default text_color_inactive'>
-					Жиры, г
-				</p>
-				<p className='text text_type_digits-default text_color_inactive'>
-					{fat}
-				</p>
-			</div>
-			<div className={cl.info}>
-				<p className='text text_type_main-default text_color_inactive'>
-					Углеводы, г
-				</p>
-				<p className='text text_type_digits-default text_color_inactive'>
-					{carbohydrates}
-				</p>
-			</div>
+			{INGREDIENT_INFO.map(({ title, type }) => (
+				<div className={cl.info}>
+					<Typography isInactive>{title}</Typography>
+					<Typography type='digits' isInactive>
+						{props[type]}
+					</Typography>
+				</div>
+			))}
 		</div>
 	);
 }

@@ -1,9 +1,9 @@
-import { createPortal } from 'react-dom';
-import ModalOverlay from './ModalOverlay';
-import Subtitle from '../ui/heading/Subtitle';
 import { CloseIcon } from '@ya.praktikum/react-developer-burger-ui-components';
+import { createPortal } from 'react-dom';
+import Subtitle from '../ui/heading/Subtitle';
+import { useCloseModalWhenPress } from '../../hooks/useCloseModalWhenPress';
 import cl from './Modal.module.css';
-import { useEffect } from 'react';
+import ModalOverlay from './ModalOverlay';
 
 interface ModalProps {
 	headerTitle?: string | null;
@@ -16,25 +16,14 @@ export default function Modal({
 	onClose,
 	children,
 }: ModalProps) {
-	useEffect(() => {
-		const handleEscDown = (event: KeyboardEvent) => {
-			if (event.key === 'Escape') {
-				onClose();
-			}
-		};
+	useCloseModalWhenPress(onClose);
 
-		document.addEventListener('keydown', handleEscDown);
-
-		return () => {
-			document.removeEventListener('keydown', handleEscDown);
-		};
-	}, []);
 	return createPortal(
 		<ModalOverlay onClose={onClose}>
 			<div className='flex justify-between items-center'>
 				{headerTitle && (
 					<Subtitle as='h3' isWide>
-						Детали ингредиента
+						{headerTitle}
 					</Subtitle>
 				)}
 				<div

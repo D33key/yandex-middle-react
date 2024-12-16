@@ -2,36 +2,7 @@
 	display: flex;
 	flex-direction: column;
 	max-height: 75dvh;
+	width: calc(50% - 56px);
 
 	margin-left: 56px;
-}
-
-.constructorElements {
-	display: flex;
-	flex-direction: column;
-	gap: 10px;
-	overflow-y: auto;
-}
-
-.item {
-	display: flex;
-	justify-content: flex-end;
-	align-items: center;
-
-	gap: 8px;
-}
-
-.amountWrapper {
-	display: flex;
-	align-items: center;
-	justify-content: flex-end;
-	gap: 40px;
-
-	margin-top: 40px;
-}
-
-.amount {
-	display: flex;
-	align-items: center;
-	gap: 8px;
 }
