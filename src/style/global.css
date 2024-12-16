@@ -70,3 +70,31 @@ a {
 .relative {
 	position: relative;
 }
+
+.gap-one-half {
+	gap: 1.5rem;
+}
+
+.h-full {
+	height: 100%;
+}
+
+.h-screen {
+	height: 100dvh;
+}
+
+.m-top-auto {
+	margin-top: auto;
+}
+
+.m-bottom-auto {
+	margin-bottom: auto;
+}
+
+.link-color {
+	color: #4c4cff;
+}
+
+.text-center {
+	text-align: center;
+}
