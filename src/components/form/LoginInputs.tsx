@@ -1,6 +1,6 @@
 import { FormInputsProps } from '../../constansts/formInputs/loginInputs';
 
-interface InputsProps {
+export interface InputsProps {
 	array: FormInputsProps[];
 }
 export default function Inputs({ array }: InputsProps) {

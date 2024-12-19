@@ -3,12 +3,12 @@ import authApi from '../../../api/authApi';
 import convertFormDataToObject from '../../../utils/convertFormDataToObject';
 import { AuthWithTokens } from '../../../api/types';
 
-export const fetchAuthLogin = createAsyncThunk(
-	'auth-login',
+export const fetchAuthRegister = createAsyncThunk(
+	'auth-register',
 	async (formData: FormData, { signal, rejectWithValue }) => {
 		try {
 			const obj = convertFormDataToObject(formData);
-			const response: AuthWithTokens = await authApi.login(obj, signal);
+			const response: AuthWithTokens = await authApi.register(obj, signal);
 
 			delete response.success;
 

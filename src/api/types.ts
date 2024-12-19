@@ -35,7 +35,7 @@ export type APIMethod = (
 ) => Promise<Response>;
 
 export interface BaseAuth {
-	success: boolean;
+	success?: boolean;
 	user: {
 		email: string;
 		name: string;

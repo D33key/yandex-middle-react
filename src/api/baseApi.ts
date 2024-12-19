@@ -1,3 +1,4 @@
+import getCookie from '../utils/cookies/getCookie';
 import FetchTransport from './fetchTransport';
 import { APIMethod, BaseAPIConfig, Headers, Options } from './types';
 
@@ -27,7 +28,7 @@ export default abstract class BaseApi {
 
 		if (installedOptions?.headers?.withToken) {
 			delete options.headers.withToken;
-			options.headers.authorization = `Bearer ${this.getToken()}`;
+			options.headers.authorization = this.getToken();
 		}
 		return options as Options;
 	}
@@ -69,6 +70,6 @@ export default abstract class BaseApi {
 	};
 
 	private getToken() {
-		return localStorage.getItem('token') ?? '';
+		return getCookie('token') ?? '';
 	}
 }

@@ -5,5 +5,7 @@ export const URLS = {
 	login: '/login',
 	logout: '/logout',
 	register: '/register',
-	token: '/token',
+	refreshToken: '/token',
+
+	user: '/user',
 } as const;

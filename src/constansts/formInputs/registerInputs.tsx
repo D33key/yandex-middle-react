@@ -7,7 +7,7 @@ export const REGISTER_FORM_INPUTS_PROPS: FormInputsProps[] = [
 		id: '1',
 		type: 'text',
 		name: 'name',
-		placeholder: 'E-mail',
+		placeholder: 'Имя',
 		errorText: 'Странное имя',
 		component: Input,
 	},
