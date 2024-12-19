@@ -10,7 +10,7 @@ export const authSlice = createSlice({
 		builder
 			.addCase(fetchAuthLogin.fulfilled, (_, action) => action.payload)
 			.addCase(fetchAuthLogin.rejected, (_, action) => {
-				console.error('Ошибка загрузки данных: ', action.error.message);
+				console.error('Ошибка загрузки данных: ', action.payload);
 			});
 	},
 });

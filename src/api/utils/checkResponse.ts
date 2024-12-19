@@ -1,6 +1,6 @@
-export default async function checkResponse(response: Response) {
+export default function checkResponse(response: Response) {
 	if (!response.ok) {
-		return Promise.reject(`Ошибка ${response.status}`);
+		return Promise.reject(response);
 	}
 
 	return response;

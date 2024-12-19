@@ -1,9 +1,9 @@
-import { LoginFormInputsProps } from '../../constansts/formInputs/loginInputs';
+import { FormInputsProps } from '../../constansts/formInputs/loginInputs';
 
-interface LoginInputsProps {
-	array: LoginFormInputsProps[];
+interface InputsProps {
+	array: FormInputsProps[];
 }
-export default function LoginInputs({ array }: LoginInputsProps) {
+export default function Inputs({ array }: InputsProps) {
 	return array.map((input) => {
 		const Component = input.component!;
 		const props = { ...input };

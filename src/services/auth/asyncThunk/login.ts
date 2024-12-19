@@ -12,11 +12,18 @@ export const fetchAuthLogin = createAsyncThunk(
 
 			return response.data as AuthWithTokens;
 		} catch (error) {
-			if ((error as Error).name === 'AbortError') {
+			if (
+				error &&
+				typeof error === 'object' &&
+				'name' in error &&
+				error.name === 'AbortError'
+			) {
 				console.error('Запрос был отменен');
 				return rejectWithValue('Запрос отменен');
 			}
-			return rejectWithValue(error);
+			const errorResponse = await (error as Response).json();
+
+			return rejectWithValue(errorResponse.message);
 		}
 	},
 );
