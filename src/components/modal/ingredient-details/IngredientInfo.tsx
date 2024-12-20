@@ -13,7 +13,7 @@ export default function IngredientInfo(props: InfoProps) {
 	return (
 		<div className={`${cl.gap} flex flex-row`}>
 			{INGREDIENT_INFO.map(({ title, type }) => (
-				<div className={cl.info}>
+				<div className={cl.info} key={title + type}>
 					<Typography isInactive>{title}</Typography>
 					<Typography type='digits' isInactive>
 						{props[type]}

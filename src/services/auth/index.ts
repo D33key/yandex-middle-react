@@ -4,6 +4,8 @@ import { fetchAuthLogin } from './asyncThunk/login';
 import { fetchAuthRegister } from './asyncThunk/register';
 import setCookie from '../../utils/cookies/setCookie';
 import { fetchAuthCheckUser } from './asyncThunk/checkUser';
+import { fetchAuthForgotPassword } from './asyncThunk/forgotPassword';
+import { fetchAuthResetPassword } from './asyncThunk/resetPassword';
 
 export const authSlice = createSlice({
 	name: 'auth',
@@ -47,8 +49,10 @@ export const authSlice = createSlice({
 			})
 
 			.addCase(fetchAuthCheckUser.fulfilled, (state, action) => {
-				setCookie('accessToken', action.payload.accessToken, 1);
-				setCookie('refreshToken', action.payload.refreshToken, 1);
+				if (action.payload.accessToken) {
+					setCookie('accessToken', action.payload.accessToken, 1);
+					setCookie('refreshToken', action.payload.refreshToken, 1);
+				}
 
 				if (!state) {
 					const userData = {
@@ -62,6 +66,29 @@ export const authSlice = createSlice({
 			})
 			.addCase(fetchAuthCheckUser.rejected, (_, action) => {
 				console.error('Ошибка авторизации через токен: ', action.payload);
+
+				if (action.payload !== 'Запрос отменен') {
+					return null;
+				}
+
+				throw new Error(action.payload);
+			})
+
+			.addCase(fetchAuthForgotPassword.rejected, (_, action) => {
+				console.error(
+					'Ошибка восстановления пароля через почту: ',
+					action.payload,
+				);
+
+				if (action.payload !== 'Запрос отменен') {
+					return null;
+				}
+
+				throw new Error(action.payload);
+			})
+
+			.addCase(fetchAuthResetPassword.rejected, (_, action) => {
+				console.error('Ошибка восстановления пароля: ', action.payload);
 
 				if (action.payload !== 'Запрос отменен') {
 					return null;

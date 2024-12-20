@@ -1,16 +1,19 @@
 import { useEffect, useRef, useState } from 'react';
-import { useAppDispatch, useAppSelector } from '../useRTK';
-import getCookie from '../../utils/cookies/getCookie';
 import { fetchAuthCheckUser } from '../../services/auth/asyncThunk/checkUser';
+import getCookie from '../../utils/cookies/getCookie';
+import { useAppDispatch } from '../useRTK';
 
 export default function useAuth() {
 	const [isLoading, setIsLoading] = useState(true);
-	const userData = useAppSelector((state) => state.authSlice);
-	const dispatch = useAppDispatch();
+	const [isUserExist, setIsUserExist] = useState(false);
 	const controller = useRef<AbortController | null>(null);
 
+	const dispatch = useAppDispatch();
+
 	useEffect(() => {
-		if (!userData) {
+		const accessToken = getCookie('accessToken');
+
+		if (accessToken) {
 			try {
 				controller.current = new AbortController();
 
@@ -19,6 +22,7 @@ export default function useAuth() {
 
 					if (!token) {
 						setIsLoading(false);
+						setIsUserExist(false);
 						return;
 					}
 
@@ -27,15 +31,18 @@ export default function useAuth() {
 					);
 
 					setIsLoading(false);
+					setIsUserExist(true);
 				};
 
 				checkUser();
 			} catch (error) {
 				console.error((error as Error).message);
 				setIsLoading(false);
-			} 
+				setIsUserExist(false);
+			}
 		} else {
 			setIsLoading(false);
+			setIsUserExist(false);
 		}
 
 		return () => {
@@ -43,5 +50,5 @@ export default function useAuth() {
 		};
 	}, []);
 
-	return { isLoading, userData };
+	return { isLoading, isUserExist };
 }

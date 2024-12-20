@@ -7,5 +7,8 @@ export const URLS = {
 	register: '/register',
 	refreshToken: '/token',
 
+	forgotPassword: '/password-reset',
+	resetPassword: '/password-reset/reset',
+
 	user: '/user',
 } as const;

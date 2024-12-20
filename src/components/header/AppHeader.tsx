@@ -11,15 +11,19 @@ export default function AppHeader() {
 	return (
 		<header className={cl.wrapper}>
 			<div className={cl.linksWrapper}>
-				<Link Icon={BurgerIcon} isActive>
+				<Link to='/' Icon={BurgerIcon}>
 					Конструктор
 				</Link>
-				<Link Icon={ListIcon}>Лента заказов</Link>
+				<Link to='/' Icon={ListIcon}>
+					Лента заказов
+				</Link>
 			</div>
 			<div className={cl.logo}>
 				<Logo />
 			</div>
-			<Link Icon={ProfileIcon}>Личный кабинет</Link>
+			<Link to='/profile' Icon={ProfileIcon}>
+				Личный кабинет
+			</Link>
 		</header>
 	);
 }

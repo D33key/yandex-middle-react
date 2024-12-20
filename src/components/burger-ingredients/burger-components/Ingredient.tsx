@@ -8,6 +8,7 @@ import Typography from '../../ui/typography/Typography';
 import { IngredientProps, IngredientWrapperProps } from '../types';
 import Amount from './Amount';
 import cl from './Ingredient.module.css';
+import { Link, useLocation } from 'react-router';
 
 export default function IngredientWrapper({
 	data,
@@ -39,15 +40,19 @@ function Ingredient({ product }: IngredientProps) {
 		item: product,
 	}));
 	const dispatch = useAppDispatch();
+	const location = useLocation();
 
 	const handleProductClick = (product: IngredientProps['product']) => {
 		dispatch(openModal(product));
 	};
 	return (
-		<div
+		<Link
+			ref={drag}
+			to={`/ingredients/${product._id}`}
 			className={cl.productWrapper}
 			onClick={() => handleProductClick(product)}
-			ref={drag}
+			state={{ background: location }}
+			replace
 		>
 			<div className={cl.img}>
 				<img src={product.image} alt={product.name} />
@@ -57,6 +62,6 @@ function Ingredient({ product }: IngredientProps) {
 				{product.price} <CurrencyIcon type='primary' />
 			</Typography>
 			<Typography>{product.name}</Typography>
-		</div>
+		</Link>
 	);
 }

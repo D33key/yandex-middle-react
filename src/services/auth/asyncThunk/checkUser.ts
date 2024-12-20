@@ -27,10 +27,13 @@ export const fetchAuthCheckUser = createAsyncThunk(
 					return rejectWithValue('Не валидный refresh token');
 				}
 
-				const responseUser = await authApi.checkUser(
-					signal,
-					responseToken.accessToken,
-				);
+				const responseUser = await authApi
+					.checkUser(signal, responseToken.accessToken)
+					.catch(() => null);
+
+				if (!responseUser) {
+					return rejectWithValue('Не удалось приминить новый токен');
+				}
 
 				return fulfillWithValue({ ...responseUser, ...responseToken });
 			}

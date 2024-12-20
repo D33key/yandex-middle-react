@@ -70,6 +70,6 @@ export default abstract class BaseApi {
 	};
 
 	private getToken() {
-		return getCookie('token') ?? '';
+		return getCookie('accessToken') ?? '';
 	}
 }

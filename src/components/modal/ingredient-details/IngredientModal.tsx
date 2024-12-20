@@ -10,16 +10,23 @@ function IngredientModal() {
 	const dispatch = useAppDispatch();
 
 	return (
-		selectedProduct &&
-		'type' in selectedProduct && (
-			<Modal
-				headerTitle='Детали ингредиента'
-				onClose={() => dispatch(closeModal())}
-			>
-				<IngredientDetails product={selectedProduct} />
-			</Modal>
-		)
+		<IngredientModal.Wrapper>
+			{selectedProduct && 'type' in selectedProduct && (
+				<Modal
+					headerTitle='Детали ингредиента'
+					onClose={() => dispatch(closeModal())}
+				>
+					<IngredientDetails product={selectedProduct} />
+				</Modal>
+			)}
+		</IngredientModal.Wrapper>
 	);
 }
+
+function Wrapper({ children }: { children: React.ReactNode }) {
+	return <>{children}</>;
+}
+
+IngredientModal.Wrapper = Wrapper;
 
 export default memo(IngredientModal);

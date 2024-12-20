@@ -2,7 +2,10 @@ import type { FormDataObject } from '../utils/convertFormDataToObject';
 import BaseApi from './baseApi';
 import { URLS } from './constants';
 
-type AuthMethod = (data: FormDataObject, signal?: AbortSignal) => Promise<any>;
+export type AuthMethod = <T extends object = object>(
+	data: FormDataObject,
+	signal?: AbortSignal,
+) => Promise<T>;
 
 class AuthApi extends BaseApi {
 	constructor() {
@@ -61,6 +64,26 @@ class AuthApi extends BaseApi {
 			data: {
 				token,
 			},
+			signal,
+			withCredentials: 'same-origin',
+		});
+
+		return await response.json();
+	};
+
+	forgotPassword: AuthMethod = async (data, signal) => {
+		const response = await this.post(URLS.forgotPassword, {
+			data,
+			signal,
+			withCredentials: 'same-origin',
+		});
+
+		return await response.json();
+	};
+
+	resetPassword: AuthMethod = async (data, signal) => {
+		const response = await this.post(URLS.resetPassword, {
+			data,
 			signal,
 			withCredentials: 'same-origin',
 		});
