@@ -12,6 +12,10 @@ export function useCloseModalWhenPress(onClose: () => void, key = 'Escape') {
 
 		return () => {
 			document.removeEventListener('keydown', handleEscDown);
+
+			// Нужно для того, чтобы при обновлении страницы с открытой модалкой
+			// нас переносила на страницу ингреидента
+			window.history.replaceState({}, '');
 		};
 	}, []);
 }

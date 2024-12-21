@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
-import { useAppDispatch } from '../useRTK';
 import { fetchIngredients } from '../../services/ingredients/asyncThunk';
+import { useAppDispatch } from '../useRTK';
 
 export function useFetchIngredients() {
 	const dispatch = useAppDispatch();
