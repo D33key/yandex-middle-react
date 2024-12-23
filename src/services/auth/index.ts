@@ -6,6 +6,7 @@ import setCookie from '../../utils/cookies/setCookie';
 import { fetchAuthCheckUser } from './asyncThunk/checkUser';
 import { fetchAuthForgotPassword } from './asyncThunk/forgotPassword';
 import { fetchAuthResetPassword } from './asyncThunk/resetPassword';
+import { fetchAuthUpdateUser } from './asyncThunk/updateUser';
 
 export const authSlice = createSlice({
 	name: 'auth',
@@ -49,20 +50,24 @@ export const authSlice = createSlice({
 			})
 
 			.addCase(fetchAuthCheckUser.fulfilled, (state, action) => {
-				if (action.payload.accessToken) {
-					setCookie('accessToken', action.payload.accessToken, 1);
-					setCookie('refreshToken', action.payload.refreshToken, 1);
+				if (action.payload) {
+					if (action.payload.accessToken) {
+						setCookie('accessToken', action.payload.accessToken, 1);
+						setCookie('refreshToken', action.payload.refreshToken, 1);
+					}
+
+					if (!state) {
+						const userData = {
+							user: {
+								...action.payload.user,
+							},
+						};
+
+						return userData;
+					}
 				}
 
-				if (!state) {
-					const userData = {
-						user: {
-							...action.payload.user,
-						},
-					};
-
-					return userData;
-				}
+				throw new Error('Не валидный пользователь');
 			})
 			.addCase(fetchAuthCheckUser.rejected, (_, action) => {
 				console.error('Ошибка авторизации через токен: ', action.payload);
@@ -70,7 +75,6 @@ export const authSlice = createSlice({
 				if (action.payload !== 'Запрос отменен') {
 					return null;
 				}
-
 				throw new Error(action.payload);
 			})
 
@@ -89,6 +93,34 @@ export const authSlice = createSlice({
 
 			.addCase(fetchAuthResetPassword.rejected, (_, action) => {
 				console.error('Ошибка восстановления пароля: ', action.payload);
+
+				if (action.payload !== 'Запрос отменен') {
+					return null;
+				}
+
+				throw new Error(action.payload);
+			})
+
+			.addCase(fetchAuthUpdateUser.fulfilled, (state, action) => {
+				if (action.payload) {
+					if (action.payload.accessToken) {
+						setCookie('accessToken', action.payload.accessToken, 1);
+						setCookie('refreshToken', action.payload.refreshToken, 1);
+					}
+
+					if (!state) {
+						const userData = {
+							user: {
+								...action.payload.user,
+							},
+						};
+
+						return userData;
+					}
+				}
+			})
+			.addCase(fetchAuthUpdateUser.rejected, (_, action) => {
+				console.error('Ошибка авторизации через токен: ', action.payload);
 
 				if (action.payload !== 'Запрос отменен') {
 					return null;

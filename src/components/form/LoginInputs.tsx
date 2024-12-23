@@ -3,6 +3,7 @@ import { FormInputsProps } from '../../constansts/formInputs/loginInputs';
 export interface InputsProps {
 	array: FormInputsProps[];
 }
+
 export default function Inputs({ array }: InputsProps) {
 	return array.map((input) => {
 		const Component = input.component!;
@@ -14,3 +15,5 @@ export default function Inputs({ array }: InputsProps) {
 		return <Component key={props.id} {...props} />;
 	});
 }
+
+

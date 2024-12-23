@@ -10,6 +10,7 @@ export const REGISTER_FORM_INPUTS_PROPS: FormInputsProps[] = [
 		placeholder: 'Имя',
 		errorText: 'Странное имя',
 		component: Input,
+		required: true,
 	},
 	{
 		id: '2',
@@ -18,6 +19,7 @@ export const REGISTER_FORM_INPUTS_PROPS: FormInputsProps[] = [
 		placeholder: 'E-mail',
 		errorText: 'Некорректная почта',
 		component: Input,
+		required: true,
 	},
 	{
 		id: '3',
@@ -25,5 +27,6 @@ export const REGISTER_FORM_INPUTS_PROPS: FormInputsProps[] = [
 		placeholder: 'Пароль',
 		errorText: 'Некорректный пароль',
 		component: PasswordInput,
+		required: true,
 	},
 ];

@@ -10,6 +10,7 @@ export const RESET_PASSWORD_FORM_INPUTS_PROPS: FormInputsProps[] = [
 		placeholder: 'Введите новый пароль',
 		errorText: 'Некорректный пароль',
 		component: PasswordInput,
+		required: true,
 	},
 	{
 		id: '2',
@@ -18,5 +19,6 @@ export const RESET_PASSWORD_FORM_INPUTS_PROPS: FormInputsProps[] = [
 		placeholder: 'Введите код из письма',
 		errorText: 'Некорректный код из письма',
 		component: Input,
+		required: true,
 	},
 ];

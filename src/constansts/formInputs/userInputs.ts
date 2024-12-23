@@ -1,23 +1,28 @@
-import Input, { InputProps } from '../../components/inputs/Input';
+import Input from '../../components/inputs/Input';
 import PasswordInput from '../../components/inputs/PasswordInput';
+import { FormInputsProps } from './loginInputs';
 
-export interface FormInputsProps extends Partial<InputProps> {
-	id: string;
-	component?: typeof Input | typeof PasswordInput;
-}
-
-export const LOGIN_FORM_INPUTS_PROPS: FormInputsProps[] = [
+export const USER_FORM_INPUTS_PROPS: FormInputsProps[] = [
 	{
 		id: '1',
-		type: 'email',
-		name: 'email',
-		placeholder: 'E-mail',
-		errorText: 'Неверная почта',
+		type: 'text',
+		name: 'name',
+		placeholder: 'Имя',
+		errorText: 'Неверное имя',
 		component: Input,
 		required: true,
 	},
 	{
 		id: '2',
+		type: 'email',
+		name: 'email',
+		placeholder: 'Логин',
+		errorText: 'Неверная почта',
+		component: Input,
+		required: true,
+	},
+	{
+		id: '3',
 		name: 'password',
 		placeholder: 'Пароль',
 		errorText: 'Неверный пароль',

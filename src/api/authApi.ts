@@ -90,6 +90,16 @@ class AuthApi extends BaseApi {
 
 		return await response.json();
 	};
+
+	logout = async (token?: string, signal?: AbortSignal) => {
+		const response = await this.post(URLS.logout, {
+			data: { token },
+			signal,
+			withCredentials: 'same-origin',
+		});
+
+		return await response.json();
+	};
 }
 
 export default new AuthApi();

@@ -9,5 +9,6 @@ export const FORGOT_PASSWORD_FORM_INPUTS_PROPS: FormInputsProps[] = [
 		placeholder: 'E-mail',
 		errorText: 'Некорректная почта',
 		component: Input,
+		required: true,
 	},
 ];

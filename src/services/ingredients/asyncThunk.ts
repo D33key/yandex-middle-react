@@ -4,7 +4,7 @@ import { CategoriesType } from '../../components/burger-ingredients/types';
 
 export const fetchIngredients = createAsyncThunk(
 	'ingredients',
-	async (signal: AbortSignal | undefined, { rejectWithValue }) => {
+	async (_, { signal, rejectWithValue }) => {
 		try {
 			const response = await generalAPI.getIngredients(signal);
 

@@ -2,6 +2,8 @@ import { useEffect, useRef, useState } from 'react';
 import { fetchAuthCheckUser } from '../../services/auth/asyncThunk/checkUser';
 import getCookie from '../../utils/cookies/getCookie';
 import { useAppDispatch } from '../useRTK';
+import { TOKENS } from '../../constansts';
+import eraseCookie from '../../utils/cookies/eraseCookie';
 
 export default function useAuth() {
 	const [isLoading, setIsLoading] = useState(true);
@@ -14,35 +16,39 @@ export default function useAuth() {
 		const accessToken = getCookie('accessToken');
 
 		if (accessToken) {
-			try {
-				controller.current = new AbortController();
+			controller.current = new AbortController();
 
-				const checkUser = async () => {
-					const token = getCookie('refreshToken');
+			const checkUser = async () => {
+				const token = getCookie('refreshToken');
 
-					if (!token) {
-						setIsLoading(false);
-						setIsUserExist(false);
-						return;
-					}
+				if (!token) {
+					setIsLoading(false);
+					setIsUserExist(false);
+					TOKENS.forEach((token) => eraseCookie(token));
+					return;
+				}
 
-					await dispatch(
-						fetchAuthCheckUser({ token, signal: controller.current?.signal }),
-					);
+				await dispatch(
+					fetchAuthCheckUser({ token, signal: controller.current?.signal }),
+				);
+			};
 
+			checkUser()
+				.then((res) => {
 					setIsLoading(false);
 					setIsUserExist(true);
-				};
-
-				checkUser();
-			} catch (error) {
-				console.error((error as Error).message);
-				setIsLoading(false);
-				setIsUserExist(false);
-			}
+				})
+				.catch((res) => {
+					if (res.payload === 'Нет доступа') {
+						setIsLoading(false);
+						setIsUserExist(false);
+						TOKENS.forEach((token) => eraseCookie(token));
+					}
+				});
 		} else {
 			setIsLoading(false);
 			setIsUserExist(false);
+			TOKENS.forEach((token) => eraseCookie(token));
 		}
 
 		return () => {

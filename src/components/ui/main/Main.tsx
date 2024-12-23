@@ -1,6 +1,7 @@
 interface MainProps {
 	children: React.ReactNode;
-	variant: 'center' | 'wide';
+	variant?: 'center' | 'wide';
+	className?: string;
 }
 
 const VARIANT = {
@@ -8,6 +9,10 @@ const VARIANT = {
 	wide: '',
 };
 
-export default function Main({ children, variant = 'wide' }: MainProps) {
-	return <main className={VARIANT[variant]}>{children}</main>;
+export default function Main({
+	children,
+	variant = 'wide',
+	className,
+}: MainProps) {
+	return <main className={VARIANT[variant] + ' ' + className}>{children}</main>;
 }
