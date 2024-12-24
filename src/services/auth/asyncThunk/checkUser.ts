@@ -1,24 +1,12 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import authApi from '../../../api/authApi';
 import isAborted from '../../../utils/isAborted';
-import tryUpdateToken from '../../../utils/tryUpdateToken';
 
 export const fetchAuthCheckUser = createAsyncThunk(
 	'auth-check-user',
-	async (
-		{ token, signal }: { token: string; signal?: AbortSignal },
-		{ rejectWithValue, fulfillWithValue },
-	) => {
+	async ({ signal }: { signal?: AbortSignal }, { rejectWithValue }) => {
 		try {
-			const response = await authApi.checkUser(signal).catch(async (reason) => {
-				await tryUpdateToken({
-					reason,
-					token,
-					signal,
-					rejectWithValue,
-					fulfillWithValue,
-				});
-			});
+			const response = await authApi.checkUser(signal);
 
 			if (!response) {
 				return rejectWithValue('Нет доступа');
@@ -30,7 +18,7 @@ export const fetchAuthCheckUser = createAsyncThunk(
 				return rejectWithValue('Запрос отменен');
 			}
 
-			return rejectWithValue('Не валидный пользователь');
+			return rejectWithValue((error as Error).message);
 		}
 	},
 );

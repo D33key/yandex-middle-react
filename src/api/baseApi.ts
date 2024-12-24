@@ -1,4 +1,3 @@
-import getCookie from '../utils/cookies/getCookie';
 import FetchTransport from './fetchTransport';
 import { APIMethod, BaseAPIConfig, Headers, Options } from './types';
 
@@ -28,7 +27,7 @@ export default abstract class BaseApi {
 
 		if (installedOptions?.headers?.withToken) {
 			delete options.headers.withToken;
-			options.headers.authorization = this.getToken();
+			options.headers.authorization = this.http.getToken();
 		}
 		return options as Options;
 	}
@@ -68,8 +67,4 @@ export default abstract class BaseApi {
 
 		return response;
 	};
-
-	private getToken() {
-		return getCookie('accessToken') ?? '';
-	}
 }

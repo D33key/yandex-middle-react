@@ -32,17 +32,11 @@ class AuthApi extends BaseApi {
 		return await response.json();
 	};
 
-	checkUser = async (signal?: AbortSignal, token?: string) => {
-		const isTokenAdded = token ?? false;
-		const headers = isTokenAdded
-			? ({
-					Authorization: token,
-			  } as Record<string, string>)
-			: { withToken: true };
-
+	checkUser = async (signal?: AbortSignal) => {
 		const response = await this.get(URLS.user, {
 			signal,
-			headers,
+			headers: { withToken: true },
+			shouldRevalidateIfTokenExpired: true,
 			withCredentials: 'same-origin',
 		});
 

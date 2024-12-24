@@ -70,12 +70,7 @@ export const authSlice = createSlice({
 				throw new Error('Не валидный пользователь');
 			})
 			.addCase(fetchAuthCheckUser.rejected, (_, action) => {
-				console.error('Ошибка авторизации через токен: ', action.payload);
-
-				if (action.payload !== 'Запрос отменен') {
-					return null;
-				}
-				throw new Error(action.payload);
+				throw new Error(action.payload as string);
 			})
 
 			.addCase(fetchAuthForgotPassword.rejected, (_, action) => {
@@ -84,7 +79,7 @@ export const authSlice = createSlice({
 					action.payload,
 				);
 
-				if (action.payload !== 'Запрос отменен') {
+				if (action.payload !== 'Запрос отклонен') {
 					return null;
 				}
 
@@ -94,7 +89,7 @@ export const authSlice = createSlice({
 			.addCase(fetchAuthResetPassword.rejected, (_, action) => {
 				console.error('Ошибка восстановления пароля: ', action.payload);
 
-				if (action.payload !== 'Запрос отменен') {
+				if (action.payload !== 'Запрос отклонен') {
 					return null;
 				}
 
@@ -122,7 +117,7 @@ export const authSlice = createSlice({
 			.addCase(fetchAuthUpdateUser.rejected, (_, action) => {
 				console.error('Ошибка авторизации через токен: ', action.payload);
 
-				if (action.payload !== 'Запрос отменен') {
+				if (action.payload !== 'Запрос отклонен') {
 					return null;
 				}
 

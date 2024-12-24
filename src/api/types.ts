@@ -27,6 +27,7 @@ export interface Options {
 	withCredentials?: RequestCredentials;
 	signal?: AbortSignal;
 	data?: Record<string, unknown> | FormData;
+	shouldRevalidateIfTokenExpired?: boolean;
 }
 
 export type APIMethod = (

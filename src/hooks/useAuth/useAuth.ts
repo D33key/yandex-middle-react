@@ -18,28 +18,14 @@ export default function useAuth() {
 		if (accessToken) {
 			controller.current = new AbortController();
 
-			const checkUser = async () => {
-				const token = getCookie('refreshToken');
-
-				if (!token) {
-					setIsLoading(false);
-					setIsUserExist(false);
-					TOKENS.forEach((token) => eraseCookie(token));
-					return;
-				}
-
-				await dispatch(
-					fetchAuthCheckUser({ token, signal: controller.current?.signal }),
-				);
-			};
-
-			checkUser()
-				.then((res) => {
+			dispatch(fetchAuthCheckUser({ signal: controller.current?.signal }))
+				.then((_) => {
+					console.log('@@@@ WTF?')
 					setIsLoading(false);
 					setIsUserExist(true);
 				})
 				.catch((res) => {
-					if (res.payload === 'Нет доступа') {
+					if (res.message !== 'Запрос отклонен') {
 						setIsLoading(false);
 						setIsUserExist(false);
 						TOKENS.forEach((token) => eraseCookie(token));
@@ -52,7 +38,7 @@ export default function useAuth() {
 		}
 
 		return () => {
-			controller.current?.abort();
+			controller.current?.abort('Запрос отклонен');
 		};
 	}, []);
 

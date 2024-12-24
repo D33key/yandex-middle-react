@@ -16,7 +16,7 @@ export default async function tryUpdateToken<RejectReturn>({
 	if (
 		typeof reason === 'object' &&
 		'status' in reason &&
-		(reason.status === 403)
+		reason.status === 403
 	) {
 		const responseToken = await authApi
 			.updateToken(token, signal)
