@@ -7,6 +7,7 @@ export function useFetchIngredients() {
 
 	useEffect(() => {
 		const promise = dispatch(fetchIngredients());
+
 		return () => {
 			promise.abort('Запрос отклонен');
 		};

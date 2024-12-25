@@ -1,43 +1,18 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import authApi from '../../../api/authApi';
+import { BaseAuth } from '../../../api/types';
+import convertFormDataToObject from '../../../utils/convertFormDataToObject';
 import isAborted from '../../../utils/isAborted';
-import tryUpdateToken from '../../../utils/tryUpdateToken';
-import { FormDataObject } from '../../../utils/convertFormDataToObject';
 
 export const fetchAuthUpdateUser = createAsyncThunk(
 	'auth-update-user',
-	async (
-		{
-			data,
-			token,
-			signal,
-		}: { data: FormDataObject; token: string; signal?: AbortSignal },
-		{ rejectWithValue, fulfillWithValue },
-	) => {
+	async (data: FormData, { rejectWithValue }) => {
 		try {
-			const response = await authApi
-				.updateUserInfo(data, signal)
-				.catch(async (reason) => {
-					const updatedTokens = await tryUpdateToken({
-						reason,
-						token,
-						signal,
-						rejectWithValue,
-						fulfillWithValue,
-					});
-					console.log('@', updatedTokens);
-					const responseWithNewToken = await authApi
-						.updateUserInfo(data, signal)
-						.catch((res) => {
-							throw new Error(res);
-						});
+			const obj = convertFormDataToObject(data);
 
-					return {
-						accessToken: updatedTokens.accessToken,
-						refreshToken: updatedTokens.refreshToken,
-						...responseWithNewToken,
-					};
-				});
+			const response = await authApi.updateUserInfo<BaseAuth>(obj);
+
+			delete response.success;
 
 			return response;
 		} catch (error) {

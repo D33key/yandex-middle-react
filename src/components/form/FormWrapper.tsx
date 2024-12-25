@@ -3,15 +3,15 @@ import { AsyncThunk } from '@reduxjs/toolkit';
 import { Button as ButtonYandex } from '@ya.praktikum/react-developer-burger-ui-components';
 import { lazy, memo, Suspense, useState } from 'react';
 import { ErrorBoundary } from 'react-error-boundary';
+import { useNavigate } from 'react-router';
 import { useAppDispatch } from '../../hooks/useRTK';
+import Loader from '../loader/Loader';
 import TextWithLink, {
 	type TextWithLinkProps,
 } from '../text-with-link/TextWithLink';
 import Subtitle from '../ui/heading/Subtitle';
 import Typography from '../ui/typography/Typography';
-import FormInputs, { InputsProps } from './LoginInputs';
-import { useNavigate } from 'react-router';
-import Loader from '../loader/Loader';
+import FormInputs, { InputsProps } from './Inputs';
 
 const InputsWithValue = lazy(() => import('./InputsWithValue'));
 
@@ -39,14 +39,14 @@ export default function FormWrapper<Action extends AsyncThunk<any, any, any>>({
 	shouldInputsHaveValue = false,
 }: FormProps<Action>) {
 	return (
-		<ErrorBoundary fallback={<p>Произошла ошибка при отправке формы</p>}>
+		<ErrorBoundary fallback={<p>Произошла ошибка</p>}>
 			<FormWrapper.Form
 				navigateOnSuccess={navigateOnSuccess}
 				action={action}
 				className={className}
 			>
 				<FormWrapper.Wrapper>
-					<FormWrapper.Header title={formTitle} />
+					{formTitle && <FormWrapper.Header title={formTitle} />}
 					{shouldInputsHaveValue ? (
 						<Suspense fallback={<Loader />}>
 							<InputsWithValue array={inputsArray} />
@@ -67,7 +67,7 @@ export default function FormWrapper<Action extends AsyncThunk<any, any, any>>({
 
 function Button({ children }: { children: React.ReactNode }) {
 	return (
-		<ButtonYandex htmlType='submit' type='primary' size='medium'>
+		<ButtonYandex htmlType='submit' size='medium'>
 			{children}
 		</ButtonYandex>
 	);
@@ -119,7 +119,6 @@ function Form<Action extends AsyncThunk<any, any, any>>({
 						navigate(navigateOnSuccess);
 					}
 				} catch (error) {
-					console.error('Возникла ошибка при отправке данных');
 					setError(
 						'Возникла ошибка при отправке данных: ' + (error as Error).message,
 					);

@@ -1,5 +1,5 @@
 import { useAppSelector } from '../../hooks/useRTK';
-import { InputsProps } from './LoginInputs';
+import { InputsProps } from './Inputs';
 
 export default function InputsWithValue({ array }: InputsProps) {
 	const userData = useAppSelector((state) => state.authSlice?.user);

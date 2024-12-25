@@ -4,7 +4,7 @@ import isAborted from '../../../utils/isAborted';
 
 export const fetchAuthCheckUser = createAsyncThunk(
 	'auth-check-user',
-	async ({ signal }: { signal?: AbortSignal }, { rejectWithValue }) => {
+	async (_, { rejectWithValue, signal }) => {
 		try {
 			const response = await authApi.checkUser(signal);
 
@@ -17,7 +17,7 @@ export const fetchAuthCheckUser = createAsyncThunk(
 			if (isAborted(error)) {
 				return rejectWithValue('Запрос отменен');
 			}
-
+		
 			return rejectWithValue((error as Error).message);
 		}
 	},

@@ -1,46 +1,35 @@
-import { useEffect, useRef, useState } from 'react';
-import { fetchAuthCheckUser } from '../../services/auth/asyncThunk/checkUser';
-import getCookie from '../../utils/cookies/getCookie';
-import { useAppDispatch } from '../useRTK';
+import { useEffect, useState } from 'react';
 import { TOKENS } from '../../constansts';
+import { fetchAuthCheckUser } from '../../services/auth/asyncThunk/checkUser';
 import eraseCookie from '../../utils/cookies/eraseCookie';
+import { useAppDispatch } from '../useRTK';
 
-export default function useAuth() {
+export default function useAuth(pathname: string = '') {
 	const [isLoading, setIsLoading] = useState(true);
 	const [isUserExist, setIsUserExist] = useState(false);
-	const controller = useRef<AbortController | null>(null);
 
 	const dispatch = useAppDispatch();
 
 	useEffect(() => {
-		const accessToken = getCookie('accessToken');
+		const promise = dispatch(fetchAuthCheckUser());
 
-		if (accessToken) {
-			controller.current = new AbortController();
-
-			dispatch(fetchAuthCheckUser({ signal: controller.current?.signal }))
-				.then((_) => {
-					console.log('@@@@ WTF?')
+		promise
+			.then((_) => {
+				setIsLoading(false);
+				setIsUserExist(true);
+			})
+			.catch((res) => {
+				if (res.message !== 'Запрос отклонен') {
 					setIsLoading(false);
-					setIsUserExist(true);
-				})
-				.catch((res) => {
-					if (res.message !== 'Запрос отклонен') {
-						setIsLoading(false);
-						setIsUserExist(false);
-						TOKENS.forEach((token) => eraseCookie(token));
-					}
-				});
-		} else {
-			setIsLoading(false);
-			setIsUserExist(false);
-			TOKENS.forEach((token) => eraseCookie(token));
-		}
+					setIsUserExist(false);
+					TOKENS.forEach((token) => eraseCookie(token));
+				}
+			});
 
 		return () => {
-			controller.current?.abort('Запрос отклонен');
+			promise?.abort('Запрос отклонен');
 		};
-	}, []);
+	}, [pathname]);
 
 	return { isLoading, isUserExist };
 }

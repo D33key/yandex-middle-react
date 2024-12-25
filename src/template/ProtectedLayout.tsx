@@ -1,10 +1,12 @@
-import { Navigate, Outlet } from 'react-router';
+import { Navigate, Outlet, useLocation } from 'react-router';
 import Loader from '../components/loader/Loader';
 import useAuth from '../hooks/useAuth/useAuth';
 import AppHeader from '../components/header/AppHeader';
 
 export default function ProtectedLayout() {
-	const { isLoading, isUserExist } = useAuth();
+	const { pathname } = useLocation();
+	const { isLoading, isUserExist } = useAuth(pathname);
+
 	if (isLoading) {
 		return <Loader />;
 	}

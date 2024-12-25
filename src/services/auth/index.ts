@@ -56,21 +56,17 @@ export const authSlice = createSlice({
 						setCookie('refreshToken', action.payload.refreshToken, 1);
 					}
 
-					if (!state) {
-						const userData = {
-							user: {
-								...action.payload.user,
-							},
-						};
-
-						return userData;
-					}
+					return {
+						user: {
+							...action.payload.user,
+						},
+					};
 				}
 
 				throw new Error('Не валидный пользователь');
 			})
 			.addCase(fetchAuthCheckUser.rejected, (_, action) => {
-				throw new Error(action.payload as string);
+				throw new Error(action.error.message);
 			})
 
 			.addCase(fetchAuthForgotPassword.rejected, (_, action) => {
@@ -96,36 +92,19 @@ export const authSlice = createSlice({
 				throw new Error(action.payload);
 			})
 
-			.addCase(fetchAuthUpdateUser.fulfilled, (state, action) => {
+			.addCase(fetchAuthUpdateUser.fulfilled, (_, action) => {
 				if (action.payload) {
-					if (action.payload.accessToken) {
-						setCookie('accessToken', action.payload.accessToken, 1);
-						setCookie('refreshToken', action.payload.refreshToken, 1);
-					}
-
-					if (!state) {
-						const userData = {
-							user: {
-								...action.payload.user,
-							},
-						};
-
-						return userData;
-					}
+					return {
+						user: {
+							...action.payload.user,
+						},
+					};
 				}
 			})
 			.addCase(fetchAuthUpdateUser.rejected, (_, action) => {
-				console.error('Ошибка авторизации через токен: ', action.payload);
-
-				if (action.payload !== 'Запрос отклонен') {
-					return null;
-				}
-
-				throw new Error(action.payload);
+				throw new Error(action.error.message);
 			});
 	},
 });
-
-// export const {  } = ingredientsSlice.actions;
 
 export default authSlice.reducer;

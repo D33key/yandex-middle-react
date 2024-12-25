@@ -37,13 +37,10 @@ export default class FetchTransport {
 	private async refreshToken() {
 		const response = await this.post(URLS.refreshToken, {
 			data: { token: this.getToken('refreshToken') },
+			withCredentials: 'same-origin',
 		});
 
-		const { accessToken, refreshToken, success } = await response.json();
-
-		if (!success) {
-			throw new Error('Не удалось обновить токен');
-		}
+		const { accessToken, refreshToken } = await response.json();
 
 		setCookie('accessToken', accessToken, 1);
 		setCookie('refreshToken', refreshToken, 2);
@@ -106,10 +103,16 @@ export default class FetchTransport {
 		} catch (error) {
 			const errorResponse = await convertErrorResponse(error);
 			if (shouldRevalidateIfTokenExpired && errorResponse === JWT_EXPIRED) {
-				const newToken = await this.refreshToken();
-				return await executeRequest(newToken).catch((_) => {
-					throw new Error('Нет доступа');
-				});
+				try {
+					const newToken = await this.refreshToken().catch((_) => {
+						throw new Error('Не удалось обновить токен');
+					});
+					return await executeRequest(newToken).catch((_) => {
+						throw new Error('Нет доступа');
+					});
+				} catch (error) {
+					throw new Error((error as Error).message);
+				}
 			}
 
 			throw new Error(errorResponse);

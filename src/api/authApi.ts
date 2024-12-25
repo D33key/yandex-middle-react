@@ -47,6 +47,11 @@ class AuthApi extends BaseApi {
 		const response = await this.patch(URLS.user, {
 			data,
 			signal,
+			headers: {
+				'withToken': true,
+				'Content-Type': 'application/json;charset=utf-8',
+			},
+			shouldRevalidateIfTokenExpired: true,
 			withCredentials: 'same-origin',
 		});
 

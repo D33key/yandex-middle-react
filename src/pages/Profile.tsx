@@ -10,7 +10,6 @@ export default function Profile() {
 				action={fetchAuthUpdateUser}
 				inputsArray={USER_FORM_INPUTS_PROPS}
 				buttonText='Сохранить'
-				navigateOnSuccess='/'
 				shouldInputsHaveValue
 			/>
 		</Main>
