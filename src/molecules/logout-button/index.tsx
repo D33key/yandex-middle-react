@@ -1,4 +1,5 @@
 import Link from '@/atoms/link/Link';
+import { PAGE_URLS } from '@/constansts/page-urls';
 import { useAppDispatch } from '@/hooks/useRTK';
 import { fetchAuthLogout } from '@/services/auth/asyncThunk/logout';
 import { useNavigate } from 'react-router';
@@ -9,7 +10,7 @@ export default function LogoutButton() {
 
 	return (
 		<Link
-			to='/login'
+			to={PAGE_URLS.login}
 			variant='medium'
 			paddingHorizontal={false}
 			onClick={async (e) => {

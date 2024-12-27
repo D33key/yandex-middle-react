@@ -2,6 +2,7 @@ import { Navigate, Outlet, useLocation } from 'react-router';
 import Loader from '../molecules/loader';
 import useAuth from '../hooks/useAuth/useAuth';
 import AppHeader from '../molecules/header/AppHeader';
+import { PAGE_URLS } from '@/constansts/page-urls';
 
 export default function ProtectedLayout() {
 	const { pathname } = useLocation();
@@ -17,6 +18,6 @@ export default function ProtectedLayout() {
 			<Outlet />
 		</>
 	) : (
-		<Navigate to='/login' replace />
+		<Navigate to={PAGE_URLS.login} replace />
 	);
 }

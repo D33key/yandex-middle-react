@@ -12,6 +12,7 @@ import { useAppDispatch } from '@/hooks/useRTK';
 import { openModal } from '@/services/modal';
 import Amount from '@/atoms/ingredient-amount/Amount';
 import Typography from '@/atoms/typography/Typography';
+import { PAGE_URLS } from '@/constansts/page-urls';
 
 export default function IngredientWithTitle({
 	data,
@@ -53,7 +54,7 @@ function Ingredient({ product }: IngredientProps) {
 			ref={(el) => {
 				drag(el);
 			}}
-			to={`/ingredients/${product._id}`}
+			to={`${PAGE_URLS.ingredients}/${product._id}`}
 			className={cl.productWrapper}
 			onClick={() => handleProductClick(product)}
 			state={{ background: location }}
