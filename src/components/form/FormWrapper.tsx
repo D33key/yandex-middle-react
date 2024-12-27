@@ -12,6 +12,7 @@ import TextWithLink, {
 import Subtitle from '../ui/heading/Subtitle';
 import Typography from '../ui/typography/Typography';
 import FormInputs, { InputsProps } from './Inputs';
+import { useFormStatus } from 'react-dom';
 
 const InputsWithValue = lazy(() => import('./InputsWithValue'));
 
@@ -66,9 +67,10 @@ export default function FormWrapper<Action extends AsyncThunk<any, any, any>>({
 }
 
 function Button({ children }: { children: React.ReactNode }) {
+	const { pending } = useFormStatus();
 	return (
-		<ButtonYandex htmlType='submit' size='medium'>
-			{children}
+		<ButtonYandex htmlType='submit' size='medium' disabled={pending}>
+			{!pending ? children : 'Отправляем...'}
 		</ButtonYandex>
 	);
 }

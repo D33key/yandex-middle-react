@@ -14,6 +14,9 @@ const Ingredients = lazy(() => import('./pages/Ingredients'));
 const IngredientModal = lazy(
 	() => import('./components/modal/ingredient-details/IngredientModal'),
 );
+const ProfileLinks = lazy(
+	() => import('./components/profile-links/ProfileLinks'),
+);
 
 export default function Router() {
 	const location = useLocation();
@@ -24,7 +27,12 @@ export default function Router() {
 			<Routes location={background ?? location}>
 				<Route element={<ProtectedLayout />}>
 					<Route path='/' element={<Constructor />} />
-					<Route path='/profile' element={<Profile />} />
+					<Route element={<ProfileLinks />}>
+						<Route path='/profile'>
+							<Route index element={<Profile />} />
+							<Route path='orders' element={<div>Заглушка</div>} />
+						</Route>
+					</Route>
 					<Route path='/ingredients/:id' element={<Ingredients />} />
 				</Route>
 				<Route element={<NonAuthLayout />}>

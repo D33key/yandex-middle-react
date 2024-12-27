@@ -7,6 +7,7 @@ import { fetchAuthCheckUser } from './asyncThunk/checkUser';
 import { fetchAuthForgotPassword } from './asyncThunk/forgotPassword';
 import { fetchAuthResetPassword } from './asyncThunk/resetPassword';
 import { fetchAuthUpdateUser } from './asyncThunk/updateUser';
+import { fetchAuthLogout } from './asyncThunk/logout';
 
 export const authSlice = createSlice({
 	name: 'auth',
@@ -102,6 +103,13 @@ export const authSlice = createSlice({
 				}
 			})
 			.addCase(fetchAuthUpdateUser.rejected, (_, action) => {
+				throw new Error(action.error.message);
+			})
+
+			.addCase(fetchAuthLogout.fulfilled, () => {
+				return null;
+			})
+			.addCase(fetchAuthLogout.rejected, (_, action) => {
 				throw new Error(action.error.message);
 			});
 	},

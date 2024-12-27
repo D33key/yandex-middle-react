@@ -14,7 +14,7 @@ export default function AppHeader() {
 				<Link to='/' Icon={BurgerIcon}>
 					Конструктор
 				</Link>
-				<Link to='/' Icon={ListIcon}>
+				<Link to='/profile/orders' Icon={ListIcon}>
 					Лента заказов
 				</Link>
 			</div>

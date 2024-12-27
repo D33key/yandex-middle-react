@@ -1,4 +1,5 @@
 import type { FormDataObject } from '../utils/convertFormDataToObject';
+import getCookie from '../utils/cookies/getCookie';
 import BaseApi from './baseApi';
 import { URLS } from './constants';
 
@@ -90,10 +91,12 @@ class AuthApi extends BaseApi {
 		return await response.json();
 	};
 
-	logout = async (token?: string, signal?: AbortSignal) => {
+	logout = async (signal?: AbortSignal) => {
+		const token = getCookie('refreshToken');
+
 		const response = await this.post(URLS.logout, {
-			data: { token },
 			signal,
+			data: { token },
 			withCredentials: 'same-origin',
 		});
 
