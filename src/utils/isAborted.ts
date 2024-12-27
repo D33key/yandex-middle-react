@@ -4,6 +4,6 @@ export default function isAborted(error: unknown) {
 		typeof error === 'object' &&
 		'name' in error &&
 		(error.name === 'AbortError' ||
-			(error?.message as string).includes('aborted'))
+			(error as Error).message.includes('aborted'))
 	);
 }

@@ -1,5 +1,5 @@
-import FormWrapper from '../components/form/FormWrapper';
-import Main from '../components/ui/main/Main';
+import FormWrapper from '../cells/form/FormWrapper';
+import Main from '../atoms/main/Main';
 import { FORGOT_PASSWORD_LINKS } from '../constansts/forgot-password';
 import { FORGOT_PASSWORD_FORM_INPUTS_PROPS } from '../constansts/formInputs/forgotPasswordInputs';
 import { fetchAuthForgotPassword } from '../services/auth/asyncThunk/forgotPassword';

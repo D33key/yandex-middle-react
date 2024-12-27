@@ -1,7 +1,7 @@
 import { Navigate, Outlet, useLocation } from 'react-router';
-import Loader from '../components/loader/Loader';
+import Loader from '../molecules/loader';
 import useAuth from '../hooks/useAuth/useAuth';
-import AppHeader from '../components/header/AppHeader';
+import AppHeader from '../molecules/header/AppHeader';
 
 export default function ProtectedLayout() {
 	const { pathname } = useLocation();

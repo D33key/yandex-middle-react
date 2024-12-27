@@ -1,4 +1,4 @@
-import FormWrapper from '../components/form/FormWrapper';
+import FormWrapper from '../cells/form/FormWrapper';
 import { USER_FORM_INPUTS_PROPS } from '../constansts/formInputs/userInputs';
 import { fetchAuthUpdateUser } from '../services/auth/asyncThunk/updateUser';
 

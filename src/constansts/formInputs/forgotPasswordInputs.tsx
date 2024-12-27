@@ -1,4 +1,4 @@
-import Input from '../../components/inputs/Input';
+import Input from '../../atoms/inputs/Input';
 import { FormInputsProps } from './loginInputs';
 
 export const FORGOT_PASSWORD_FORM_INPUTS_PROPS: FormInputsProps[] = [

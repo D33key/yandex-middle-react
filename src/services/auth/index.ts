@@ -8,6 +8,8 @@ import { fetchAuthForgotPassword } from './asyncThunk/forgotPassword';
 import { fetchAuthResetPassword } from './asyncThunk/resetPassword';
 import { fetchAuthUpdateUser } from './asyncThunk/updateUser';
 import { fetchAuthLogout } from './asyncThunk/logout';
+import { TOKENS } from '@/constansts';
+import eraseCookie from '@/utils/cookies/eraseCookie';
 
 export const authSlice = createSlice({
 	name: 'auth',
@@ -107,6 +109,7 @@ export const authSlice = createSlice({
 			})
 
 			.addCase(fetchAuthLogout.fulfilled, () => {
+				TOKENS.forEach((token) => eraseCookie(token));
 				return null;
 			})
 			.addCase(fetchAuthLogout.rejected, (_, action) => {

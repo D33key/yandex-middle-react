@@ -1,5 +1,5 @@
 import { Navigate, Outlet } from 'react-router';
-import Loader from '../components/loader/Loader';
+import Loader from '../molecules/loader';
 import useAuth from '../hooks/useAuth/useAuth';
 
 export default function NonAuthLayout() {

@@ -1,7 +1,7 @@
 import { useParams } from 'react-router';
 import { useFetchIngredient } from '../hooks/useFetchIngredient';
-import IngredientDetails from '../components/modal/ingredient-details/IngredientDetails';
-import Main from '../components/ui/main/Main';
+import IngredientDetails from '../molecules/ingredient-details/IngredientDetails';
+import Main from '../atoms/main/Main';
 
 export default function Ingredients() {
 	const params = useParams();

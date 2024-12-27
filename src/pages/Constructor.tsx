@@ -1,11 +1,12 @@
-import BurgerConstructor from '../components/burger-constructor/BurgerConstructor';
-import BurgerIngredients from '../components/burger-ingredients/BurgerIngredients';
-import Title from '../components/ui/heading/Title';
-import Section from '../components/ui/section/Section';
+import BurgerConstructor from '../organisms/burger-constructor/BurgerConstructor';
+import BurgerIngredients from '../cells/burger-structure';
+import Title from '../atoms/heading/Title';
+import Section from '../atoms/section/Section';
+import Main from '@/atoms/main/Main';
 
 function Constructor() {
 	return (
-		<main>
+		<Main>
 			<Section>
 				<Title>Соберите бургер</Title>
 				<div className='flex justify-between'>
@@ -13,7 +14,7 @@ function Constructor() {
 					<BurgerConstructor />
 				</div>
 			</Section>
-		</main>
+		</Main>
 	);
 }
 

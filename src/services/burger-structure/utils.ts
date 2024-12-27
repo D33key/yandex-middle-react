@@ -1,5 +1,5 @@
 import { CaseReducer, PayloadAction } from '@reduxjs/toolkit';
-import { CategoriesType } from '../../components/burger-ingredients/types';
+import { CategoriesType } from '../../types/burger-structure';
 import { BurgerStructureState } from './types';
 
 export const addIngredient: CaseReducer<
@@ -62,6 +62,6 @@ function createBun(
 	}
 
 	delete bun.secondBunId;
-	
+
 	return bun;
 }

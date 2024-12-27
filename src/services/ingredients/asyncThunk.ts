@@ -1,6 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import generalAPI from '../../api/generalApi';
-import { CategoriesType } from '../../components/burger-ingredients/types';
+import { CategoriesType } from '../../types/burger-structure';
 
 export const fetchIngredients = createAsyncThunk(
 	'ingredients',

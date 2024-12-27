@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { Categories } from '../../components/burger-ingredients/BurgerIngredients';
+import { Categories } from '../../cells/burger-structure';
 import { transformData } from '../../components/burger-ingredients/utils';
 import { fetchIngredients } from './asyncThunk';
 

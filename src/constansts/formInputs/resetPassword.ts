@@ -1,5 +1,5 @@
-import Input from '../../components/inputs/Input';
-import PasswordInput from '../../components/inputs/PasswordInput';
+import Input from '../../atoms/inputs/Input';
+import PasswordInput from '../../atoms/inputs/PasswordInput';
 import { FormInputsProps } from './loginInputs';
 
 export const RESET_PASSWORD_FORM_INPUTS_PROPS: FormInputsProps[] = [

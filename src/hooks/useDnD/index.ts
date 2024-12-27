@@ -1,8 +1,8 @@
 import { useDrag, useDrop, XYCoord } from 'react-dnd';
-import { DRAG_TYPE_ITEM } from '../../constansts';
-import type { TabName } from '../../components/tab/types';
-import { moveIngredient } from '../../services/burger-structure';
+import type { TabName } from '@/types/Tab';
 import { useAppDispatch } from '../useRTK';
+import { DRAG_TYPE_ITEM } from '@/constansts';
+import { moveIngredient } from '@/services/burger-structure';
 
 interface UseDnDProps {
 	index: number;

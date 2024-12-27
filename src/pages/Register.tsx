@@ -1,5 +1,5 @@
-import FormWrapper from '../components/form/FormWrapper';
-import Main from '../components/ui/main/Main';
+import FormWrapper from '../cells/form/FormWrapper';
+import Main from '../atoms/main/Main';
 import { REGISTER_FORM_INPUTS_PROPS } from '../constansts/formInputs/registerInputs';
 import { REGISTER_LINKS } from '../constansts/register-links';
 import { fetchAuthRegister } from '../services/auth/asyncThunk/register';

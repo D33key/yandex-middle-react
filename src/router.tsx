@@ -1,6 +1,6 @@
 import { lazy, Suspense } from 'react';
 import { Route, Routes, useLocation } from 'react-router';
-import Loader from './components/loader/Loader';
+import Loader from './molecules/loader';
 import ProtectedLayout from './template/ProtectedLayout';
 import NonAuthLayout from './template/UnprotectedLayout';
 
@@ -11,12 +11,8 @@ const ForgotPassword = lazy(() => import('./pages/ForgotPassword'));
 const ResetPassword = lazy(() => import('./pages/ResetPassword'));
 const Profile = lazy(() => import('./pages/Profile'));
 const Ingredients = lazy(() => import('./pages/Ingredients'));
-const IngredientModal = lazy(
-	() => import('./components/modal/ingredient-details/IngredientModal'),
-);
-const ProfileLinks = lazy(
-	() => import('./components/profile-links/ProfileLinks'),
-);
+const IngredientModal = lazy(() => import('./cells/ingredient-modal'));
+const ProfileLayout = lazy(() => import('./template/ProfileLayout'));
 
 export default function Router() {
 	const location = useLocation();
@@ -27,7 +23,7 @@ export default function Router() {
 			<Routes location={background ?? location}>
 				<Route element={<ProtectedLayout />}>
 					<Route path='/' element={<Constructor />} />
-					<Route element={<ProfileLinks />}>
+					<Route element={<ProfileLayout />}>
 						<Route path='/profile'>
 							<Route index element={<Profile />} />
 							<Route path='orders' element={<div>Заглушка</div>} />

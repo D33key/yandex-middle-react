@@ -1,5 +1,5 @@
-import Input, { InputProps } from '../../components/inputs/Input';
-import PasswordInput from '../../components/inputs/PasswordInput';
+import Input, { InputProps } from '../../atoms/inputs/Input';
+import PasswordInput from '../../atoms/inputs/PasswordInput';
 
 export interface FormInputsProps extends Partial<InputProps> {
 	id: string;

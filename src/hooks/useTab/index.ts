@@ -1,8 +1,8 @@
+import { TabName } from '@/types/Tab';
 import { useEffect, useState } from 'react';
-import { TabName } from '../../components/tab/types';
 
 interface UseTabProps {
-	root?: React.MutableRefObject<HTMLDivElement | null>;
+	root?: React.RefObject<HTMLDivElement | null>;
 	threshold?: number | number[];
 	rootMargin?: string;
 }
