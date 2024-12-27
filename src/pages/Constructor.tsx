@@ -1,8 +1,8 @@
-import BurgerConstructor from '../organisms/burger-constructor/BurgerConstructor';
-import BurgerIngredients from '../cells/burger-structure';
-import Title from '../atoms/heading/Title';
-import Section from '../atoms/section/Section';
 import Main from '@/atoms/main/Main';
+import Title from '@/atoms/heading/Title';
+import Section from '@/atoms/section/Section';
+import BurgerIngredients from '@/cells/burger-structure';
+import BurgerConstructor from '@/organisms/burger-constructor/BurgerConstructor';
 
 function Constructor() {
 	return (

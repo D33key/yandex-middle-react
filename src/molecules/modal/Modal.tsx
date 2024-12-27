@@ -1,8 +1,8 @@
 import { createPortal } from 'react-dom';
 import cl from './Modal.module.css';
 import { CloseIcon } from '@ya.praktikum/react-developer-burger-ui-components';
-import { useCloseModalWhenPress } from '@/hooks/useCloseModalWhenPress';
 import Title from '@/atoms/heading/Title';
+import { useCloseModalWhenPress } from '@/helpers/hooks/useCloseModalWhenPress';
 
 interface ModalProps {
 	headerTitle?: string | null;

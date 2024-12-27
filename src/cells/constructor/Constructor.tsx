@@ -1,4 +1,4 @@
-import { useAppDispatch, useAppSelector } from '@/hooks/useRTK';
+import { useAppDispatch, useAppSelector } from '@/helpers/hooks/useRTK';
 import Element from '@/molecules/constructor-element/Constructor';
 import EmptyCart from '@/molecules/empty-cart';
 import PriceWithButton from '@/molecules/price-with-button/PriceWithButton';

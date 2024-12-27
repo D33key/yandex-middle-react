@@ -1,9 +1,9 @@
 import { memo } from 'react';
-import { useAppDispatch, useAppSelector } from '@/hooks/useRTK';
 import IngredientDetails from '@/molecules/ingredient-details/IngredientDetails';
 import Modal from '@/molecules/modal/Modal';
 import { closeModal } from '@/services/modal';
 import type { RootState } from '@/services/store';
+import { useAppDispatch, useAppSelector } from '@/helpers/hooks/useRTK';
 
 function IngredientModal() {
 	const selectedProduct = useAppSelector((state: RootState) => state.modalInfo);

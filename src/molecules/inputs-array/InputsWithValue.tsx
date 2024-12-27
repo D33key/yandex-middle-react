@@ -1,4 +1,4 @@
-import { useAppSelector } from '@/hooks/useRTK';
+import { useAppSelector } from '@/helpers/hooks/useRTK';
 import type { InputsProps } from '@/types/Inputs';
 
 export default function InputsWithValue({ array }: InputsProps) {

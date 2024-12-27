@@ -8,11 +8,11 @@ import {
 } from '@/types/burger-structure';
 import Title from '@/atoms/heading/Title';
 import { DRAG_TYPE_INGREDIENT } from '@/constansts';
-import { useAppDispatch } from '@/hooks/useRTK';
 import { openModal } from '@/services/modal';
 import Amount from '@/atoms/ingredient-amount/Amount';
 import Typography from '@/atoms/typography/Typography';
 import { PAGE_URLS } from '@/constansts/page-urls';
+import { useAppDispatch } from '@/helpers/hooks/useRTK';
 
 export default function IngredientWithTitle({
 	data,

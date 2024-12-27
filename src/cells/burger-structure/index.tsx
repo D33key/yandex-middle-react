@@ -2,8 +2,8 @@ import { useRef } from 'react';
 import cl from './BurgerStructure.module.css';
 import IngredientsList from '../ingredients-list/IngredientsList';
 import Tabs from '@/molecules/tab/Tab';
-import { useTab } from '@/hooks/useTab';
 import type { CategoriesType } from '@/types/burger-structure';
+import { useTab } from '@/helpers/hooks/useTab';
 
 export interface Categories {
 	bun: CategoriesType[];

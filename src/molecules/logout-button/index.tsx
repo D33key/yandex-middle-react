@@ -1,6 +1,6 @@
 import Link from '@/atoms/link/Link';
 import { PAGE_URLS } from '@/constansts/page-urls';
-import { useAppDispatch } from '@/hooks/useRTK';
+import { useAppDispatch } from '@/helpers/hooks/useRTK';
 import { fetchAuthLogout } from '@/services/auth/asyncThunk/logout';
 import { useNavigate } from 'react-router';
 

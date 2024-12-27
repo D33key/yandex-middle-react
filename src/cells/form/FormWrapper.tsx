@@ -9,7 +9,7 @@ import { TextWithLinkProps } from '@/types/TextWithLink';
 import { InputsProps } from '@/types/Inputs';
 import Loader from '@/molecules/loader';
 import Title from '@/atoms/heading/Title';
-import { useAppDispatch } from '@/hooks/useRTK';
+import { useAppDispatch } from '@/helpers/hooks/useRTK';
 import Typography from '@/atoms/typography/Typography';
 import TextWithLink from '@/molecules/text-with-link/TextWithLink';
 import Inputs from '@/molecules/inputs-array/Inputs';

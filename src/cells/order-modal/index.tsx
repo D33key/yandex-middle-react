@@ -1,9 +1,9 @@
-import { useAppDispatch, useAppSelector } from '@/hooks/useRTK';
 import type { RootState } from '@/services/store';
 import Modal from '@/molecules/modal/Modal';
 import { closeModal } from '@/services/modal';
 import Loader from '@/molecules/loader';
 import OrderDetails from '@/molecules/order-details';
+import { useAppDispatch, useAppSelector } from '@/helpers/hooks/useRTK';
 
 function OrderModal() {
 	const orderInfo = useAppSelector((state: RootState) => state.modalInfo);

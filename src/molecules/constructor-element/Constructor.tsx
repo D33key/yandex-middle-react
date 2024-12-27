@@ -5,9 +5,9 @@ import {
 import { useRef } from 'react';
 import cl from './Element.module.css';
 import type { BurgerStructureState } from '@/services/burger-structure/types';
-import { useAppDispatch } from '@/hooks/useRTK';
-import { useDnD } from '@/hooks/useDnD';
 import { removeIngredient } from '@/services/burger-structure';
+import { useAppDispatch } from '@/helpers/hooks/useRTK';
+import { useDnD } from '@/helpers/hooks/useDnD';
 
 export interface ElementProps {
 	item: BurgerStructureState;

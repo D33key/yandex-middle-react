@@ -1,7 +1,7 @@
 import { Navigate, Outlet } from 'react-router';
-import Loader from '../molecules/loader';
-import useAuth from '../hooks/useAuth/useAuth';
 import { PAGE_URLS } from '@/constansts/page-urls';
+import useAuth from '@/helpers/hooks/useAuth/useAuth';
+import Loader from '@/molecules/loader';
 
 export default function NonAuthLayout() {
 	const { isLoading, isUserExist } = useAuth();

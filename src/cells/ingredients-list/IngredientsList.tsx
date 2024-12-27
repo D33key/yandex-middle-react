@@ -1,12 +1,12 @@
 import { memo, SetStateAction } from 'react';
 import cl from './Ingredients.module.css';
-import { useAppSelector } from '@/hooks/useRTK';
-import { SectionsRef } from '@/hooks/useTab';
 import type { RootState } from '@/services/store';
 import Loader from '@/molecules/loader';
-import { useFetchIngredients } from '@/hooks/useFetchIngredients';
 import IngredientWithTitle from '@/molecules/ingredient-with-title/IngredientWithTitle';
 import { TABS } from '@/constansts/tabs';
+import type { SectionsRef } from '@/helpers/hooks/useTab';
+import { useAppSelector } from '@/helpers/hooks/useRTK';
+import { useFetchIngredients } from '@/helpers/hooks/useFetchIngredients';
 
 function IngredientsList({
 	setSections,
