@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { Categories } from '../../cells/burger-structure';
-import { transformData } from '../../components/burger-ingredients/utils';
 import { fetchIngredients } from './asyncThunk';
+import { transformData } from '@/helpers/utils/transformData';
 
 export const ingredientsSlice = createSlice({
 	name: 'ingredients',

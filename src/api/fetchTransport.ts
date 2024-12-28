@@ -1,11 +1,11 @@
+import setCookie from '@/helpers/utils/cookies/setCookie';
 import { JWT_EXPIRED } from '../constansts/errorMessage';
-import convertErrorResponse from '../utils/convertErrorResponse';
-import getCookie from '../utils/cookies/getCookie';
-import setCookie from '../utils/cookies/setCookie';
 import { URLS } from './constants';
 import { APIMethod, IMETHOD, Options } from './types';
 import checkResponse from './utils/checkResponse';
 import { queryStringify } from './utils/queryStringify';
+import getCookie from '@/helpers/utils/cookies/getCookie';
+import convertErrorResponse from '@/helpers/utils/convertErrorResponse';
 
 export default class FetchTransport {
 	private corePath: string;

@@ -1,8 +1,8 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import passwordApi from '../../../api/passwordApi';
-import convertFormDataToObject from '../../../utils/convertFormDataToObject';
-import isAborted from '../../../utils/isAborted';
 import { ForgotPasswordResponse } from './forgotPassword';
+import convertFormDataToObject from '@/helpers/utils/convertFormDataToObject';
+import passwordApi from '@/api/passwordApi';
+import isAborted from '@/helpers/utils/isAborted';
 
 export const fetchAuthResetPassword = createAsyncThunk(
 	'auth-reset-password',

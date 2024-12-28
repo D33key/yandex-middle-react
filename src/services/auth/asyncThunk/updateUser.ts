@@ -1,8 +1,8 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import authApi from '../../../api/authApi';
-import { BaseAuth } from '../../../api/types';
-import convertFormDataToObject from '../../../utils/convertFormDataToObject';
-import isAborted from '../../../utils/isAborted';
+import convertFormDataToObject from '@/helpers/utils/convertFormDataToObject';
+import isAborted from '@/helpers/utils/isAborted';
+import authApi from '@/api/authApi';
+import type { BaseAuth } from '@/api/types';
 
 export const fetchAuthUpdateUser = createAsyncThunk(
 	'auth-update-user',

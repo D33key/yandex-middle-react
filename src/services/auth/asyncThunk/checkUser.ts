@@ -1,6 +1,6 @@
+import authApi from '@/api/authApi';
+import isAborted from '@/helpers/utils/isAborted';
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import authApi from '../../../api/authApi';
-import isAborted from '../../../utils/isAborted';
 
 export const fetchAuthCheckUser = createAsyncThunk(
 	'auth-check-user',
@@ -17,7 +17,7 @@ export const fetchAuthCheckUser = createAsyncThunk(
 			if (isAborted(error)) {
 				return rejectWithValue('Запрос отменен');
 			}
-		
+
 			return rejectWithValue((error as Error).message);
 		}
 	},

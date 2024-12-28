@@ -1,7 +1,7 @@
-import type { FormDataObject } from '../utils/convertFormDataToObject';
-import getCookie from '../utils/cookies/getCookie';
+import type { FormDataObject } from '@/helpers/utils/convertFormDataToObject';
 import BaseApi from './baseApi';
 import { URLS } from './constants';
+import getCookie from '@/helpers/utils/cookies/getCookie';
 
 export type AuthMethod = <T extends object = object>(
 	data: FormDataObject,

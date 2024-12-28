@@ -1,7 +1,7 @@
 import { Counter } from '@ya.praktikum/react-developer-burger-ui-components';
 import type { AmountProps } from '../../types/burger-structure';
-import { useAppSelector } from '@/hooks/useRTK';
 import type { RootState } from '@/services/store';
+import { useAppSelector } from '@/helpers/hooks/useRTK';
 
 function Amount({ id, type }: AmountProps) {
 	const order = useAppSelector((state: RootState) => state.burgerStructure);

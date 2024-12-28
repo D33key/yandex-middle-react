@@ -1,7 +1,7 @@
+import passwordApi from '@/api/passwordApi';
+import convertFormDataToObject from '@/helpers/utils/convertFormDataToObject';
+import isAborted from '@/helpers/utils/isAborted';
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import passwordApi from '../../../api/passwordApi';
-import convertFormDataToObject from '../../../utils/convertFormDataToObject';
-import isAborted from '../../../utils/isAborted';
 
 export interface ForgotPasswordResponse {
 	success: boolean;

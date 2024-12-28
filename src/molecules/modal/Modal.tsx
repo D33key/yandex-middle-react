@@ -28,7 +28,7 @@ export default function Modal({
 					</Title>
 				)}
 				<div
-					className={`cursor-pointer ml-auto flex ${cl.margin}`}
+					className={`cursor-pointer ${cl.margin} ml-auto flex `}
 					onClick={onClose}
 				>
 					<CloseIcon type='primary' />

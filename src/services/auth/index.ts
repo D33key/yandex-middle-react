@@ -2,14 +2,14 @@ import { createSlice } from '@reduxjs/toolkit';
 import type { AuthWithTokens } from '../../api/types';
 import { fetchAuthLogin } from './asyncThunk/login';
 import { fetchAuthRegister } from './asyncThunk/register';
-import setCookie from '../../utils/cookies/setCookie';
 import { fetchAuthCheckUser } from './asyncThunk/checkUser';
 import { fetchAuthForgotPassword } from './asyncThunk/forgotPassword';
 import { fetchAuthResetPassword } from './asyncThunk/resetPassword';
 import { fetchAuthUpdateUser } from './asyncThunk/updateUser';
 import { fetchAuthLogout } from './asyncThunk/logout';
 import { TOKENS } from '@/constansts';
-import eraseCookie from '@/utils/cookies/eraseCookie';
+import setCookie from '@/helpers/utils/cookies/setCookie';
+import eraseCookie from '@/helpers/utils/cookies/eraseCookie';
 
 export const authSlice = createSlice({
 	name: 'auth',

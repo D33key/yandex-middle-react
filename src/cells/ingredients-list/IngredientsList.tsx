@@ -1,5 +1,5 @@
 import { memo, SetStateAction } from 'react';
-import cl from './Ingredients.module.css';
+import cl from './IngredientsList.module.css';
 import type { RootState } from '@/services/store';
 import Loader from '@/molecules/loader';
 import IngredientWithTitle from '@/molecules/ingredient-with-title/IngredientWithTitle';

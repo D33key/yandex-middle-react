@@ -1,5 +1,5 @@
+import authApi from '@/api/authApi';
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import authApi from '../../../api/authApi';
 
 export const fetchAuthLogout = createAsyncThunk(
 	'auth-logout',

@@ -1,7 +1,7 @@
+import authApi from '@/api/authApi';
+import type { AuthWithTokens } from '@/api/types';
+import convertFormDataToObject from '@/helpers/utils/convertFormDataToObject';
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import authApi from '../../../api/authApi';
-import convertFormDataToObject from '../../../utils/convertFormDataToObject';
-import { AuthWithTokens } from '../../../api/types';
 
 export const fetchAuthRegister = createAsyncThunk(
 	'auth-register',

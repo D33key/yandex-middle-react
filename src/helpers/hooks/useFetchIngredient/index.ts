@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
-import { fetchIngredient } from '../../services/ingredients/asyncThunk';
 import { useAppDispatch } from '../useRTK';
-import { CategoriesType } from '../../types/burger-structure';
+import type { CategoriesType } from '@/types/burger-structure';
+import { fetchIngredient } from '@/services/ingredients/asyncThunk';
 
 export function useFetchIngredient(id: string) {
 	const dispatch = useAppDispatch();
