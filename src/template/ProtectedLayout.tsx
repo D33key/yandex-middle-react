@@ -1,8 +1,7 @@
-import { Navigate, Outlet, useLocation } from 'react-router';
 import { PAGE_URLS } from '@/constansts/page-urls';
 import useAuth from '@/helpers/hooks/useAuth/useAuth';
 import Loader from '@/molecules/loader';
-import AppHeader from '@/molecules/header/AppHeader';
+import { Navigate, Outlet, useLocation } from 'react-router';
 
 export default function ProtectedLayout() {
 	const { pathname } = useLocation();
@@ -12,12 +11,5 @@ export default function ProtectedLayout() {
 		return <Loader />;
 	}
 
-	return isUserExist ? (
-		<>
-			<AppHeader />
-			<Outlet />
-		</>
-	) : (
-		<Navigate to={PAGE_URLS.login} replace />
-	);
+	return isUserExist ? <Outlet /> : <Navigate to={PAGE_URLS.login} replace />;
 }

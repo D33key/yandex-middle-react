@@ -3,6 +3,7 @@ import { Route, Routes, useLocation } from 'react-router';
 import Loader from './molecules/loader';
 import ProtectedLayout from './template/ProtectedLayout';
 import NonAuthLayout from './template/UnprotectedLayout';
+import HeaderLayout from './template/HeaderLayout';
 
 const Constructor = lazy(() => import('./pages/Constructor'));
 const Login = lazy(() => import('./pages/Login'));
@@ -22,16 +23,20 @@ export default function Router() {
 		<Suspense fallback={<Loader />}>
 			<Routes location={background ?? location}>
 				<Route element={<ProtectedLayout />}>
-					<Route path='/' element={<Constructor />} />
-					<Route element={<ProfileLayout />}>
-						<Route path='/profile'>
-							<Route index element={<Profile />} />
-							<Route path='orders' element={<div>Заглушка</div>} />
+					<Route element={<HeaderLayout />}>
+						<Route element={<ProfileLayout />}>
+							<Route path='/profile'>
+								<Route index element={<Profile />} />
+								<Route path='orders' element={<div>Заглушка</div>} />
+							</Route>
 						</Route>
 					</Route>
 					<Route path='/ingredients/:id' element={<Ingredients />} />
 				</Route>
 				<Route element={<NonAuthLayout />}>
+					<Route element={<HeaderLayout />}>
+						<Route path='/' element={<Constructor />} />
+					</Route>
 					<Route path='/login' element={<Login />} />
 					<Route path='/register' element={<Register />} />
 					<Route path='/forgot-password' element={<ForgotPassword />} />
