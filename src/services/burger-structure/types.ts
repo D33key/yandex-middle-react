@@ -1,4 +1,4 @@
-import { CategoriesType } from '../../components/burger-ingredients/types';
+import { CategoriesType } from '../../types/burger-structure';
 
 export type BurgerStructureState = CategoriesType & {
 	isLocked?: boolean;

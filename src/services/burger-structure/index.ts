@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { CategoriesType } from '../../components/burger-ingredients/types';
+import { CategoriesType } from '../../types/burger-structure';
 import { addIngredient as addIngredientCase } from './utils';
 import { BurgerStructureState } from './types';
 import uuid4 from 'uuid4';

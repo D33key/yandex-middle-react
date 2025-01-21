@@ -1,6 +1,11 @@
+import setCookie from '@/helpers/utils/cookies/setCookie';
+import { JWT_EXPIRED } from '../constansts/errorMessage';
+import { URLS } from './constants';
 import { APIMethod, IMETHOD, Options } from './types';
 import checkResponse from './utils/checkResponse';
 import { queryStringify } from './utils/queryStringify';
+import getCookie from '@/helpers/utils/cookies/getCookie';
+import convertErrorResponse from '@/helpers/utils/convertErrorResponse';
 
 export default class FetchTransport {
 	private corePath: string;
@@ -29,6 +34,24 @@ export default class FetchTransport {
 		return this.request(url, { ...options, method: IMETHOD.DELETE });
 	};
 
+	private async refreshToken() {
+		const response = await this.post(URLS.refreshToken, {
+			data: { token: this.getToken('refreshToken') },
+			withCredentials: 'same-origin',
+		});
+
+		const { accessToken, refreshToken } = await response.json();
+
+		setCookie('accessToken', accessToken, 1);
+		setCookie('refreshToken', refreshToken, 2);
+
+		return accessToken as string;
+	}
+
+	getToken(type: 'accessToken' | 'refreshToken' = 'accessToken') {
+		return getCookie(type) ?? '';
+	}
+
 	private request: APIMethod = async (
 		url,
 		options = { method: IMETHOD.GET },
@@ -39,33 +62,60 @@ export default class FetchTransport {
 			headers = {},
 			withCredentials: credentials = 'include',
 			signal,
+			shouldRevalidateIfTokenExpired = false,
 		} = options as Options & { headers: Record<string, string> };
 
-		if (method === 'GET') {
-			const correctedUrl = new URL(
-				this.corePath + url + queryStringify(data as Record<string, string>),
-			);
+		const executeRequest = async (token?: string) => {
+			if (token) {
+				headers.authorization = token;
+			}
 
-			const response = await fetch(correctedUrl.href, {
+			if (method === 'GET') {
+				const correctedUrl = new URL(
+					this.corePath + url + queryStringify(data as Record<string, string>),
+				);
+
+				const response = await fetch(correctedUrl.href, {
+					method,
+					headers,
+					credentials,
+					signal,
+				});
+
+				return checkResponse(response);
+			}
+
+			const body = data instanceof FormData ? data : JSON.stringify(data);
+
+			const response = await fetch(this.corePath + url, {
 				method,
 				headers,
+				body,
 				credentials,
 				signal,
 			});
 
 			return checkResponse(response);
+		};
+
+		try {
+			return await executeRequest();
+		} catch (error) {
+			const errorResponse = await convertErrorResponse(error);
+			if (shouldRevalidateIfTokenExpired && errorResponse === JWT_EXPIRED) {
+				try {
+					const newToken = await this.refreshToken().catch((_) => {
+						throw new Error('Не удалось обновить токен');
+					});
+					return await executeRequest(newToken).catch((_) => {
+						throw new Error('Нет доступа');
+					});
+				} catch (error) {
+					throw new Error((error as Error).message);
+				}
+			}
+
+			throw new Error(errorResponse);
 		}
-
-		const body = data instanceof FormData ? data : JSON.stringify(data);
-
-		const response = await fetch(this.corePath + url, {
-			method,
-			headers,
-			body,
-			credentials,
-			signal,
-		});
-
-		return checkResponse(response);
 	};
 }

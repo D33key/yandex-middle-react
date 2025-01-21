@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { CategoriesType } from '../../components/burger-ingredients/types';
+import { CategoriesType } from '../../types/burger-structure';
 import { fetchOrder } from './asyncThunk';
 import { OrderInfo } from './type';
 
