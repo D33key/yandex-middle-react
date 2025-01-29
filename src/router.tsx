@@ -13,11 +13,12 @@ const ResetPassword = lazy(() => import('./pages/ResetPassword'));
 const Profile = lazy(() => import('./pages/Profile'));
 const Ingredients = lazy(() => import('./pages/Ingredients'));
 const IngredientModal = lazy(() => import('./cells/ingredient-modal'));
+const Feed = lazy(() => import('./pages/Feed'));
 const ProfileLayout = lazy(() => import('./template/ProfileLayout'));
 
 export default function Router() {
 	const location = useLocation();
-	const background = location.state?.background
+	const background = location.state?.background;
 
 	return (
 		<Suspense fallback={<Loader />}>
@@ -37,6 +38,7 @@ export default function Router() {
 					<Route element={<HeaderLayout />}>
 						<Route path='/' element={<Constructor />} />
 					</Route>
+					<Route path='/feed' element={<Feed />} />
 					<Route path='/login' element={<Login />} />
 					<Route path='/register' element={<Register />} />
 					<Route path='/forgot-password' element={<ForgotPassword />} />
