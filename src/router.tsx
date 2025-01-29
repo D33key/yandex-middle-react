@@ -17,7 +17,7 @@ const ProfileLayout = lazy(() => import('./template/ProfileLayout'));
 
 export default function Router() {
 	const location = useLocation();
-	const background = location.state?.background;
+	const background = location.state?.background
 
 	return (
 		<Suspense fallback={<Loader />}>
