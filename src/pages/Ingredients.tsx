@@ -7,7 +7,6 @@ export default function Ingredients() {
 	const params = useParams();
 
 	const ingredient = useFetchIngredient(params.id ?? '');
-	console.log(ingredient);
 
 	return (
 		ingredient && (

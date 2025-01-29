@@ -10,13 +10,14 @@ function IngredientCircleList({ ingredients }: Props) {
 						.slice(0, 6)
 						.map((ingredient, index) => (
 							<IngredientCircle
+								key={index}
 								img={ingredient}
 								isLast={index === 5}
 								amountOfRemainingIngredients={ingredients.length - 6}
 							/>
 						))
-				: ingredients.map((ingredient) => (
-						<IngredientCircle img={ingredient} />
+				: ingredients.map((ingredient, index) => (
+						<IngredientCircle key={index} img={ingredient} />
 				  ))}
 		</div>
 	);

@@ -1,0 +1,10 @@
+export const WEBSOCKET_ACTIONS = {
+	connect: 'WEBSOCKET/CONNECT',
+	disconnect: 'WEBSOCKET/DISCONNECT',
+	sendMessage: 'WEBSOCKET/SEND_MESSAGE',
+	onConnected: 'WEBSOCKET/CONNECTED',
+	onDisconnected: 'WEBSOCKET/DISCONNECTED',
+	onMessageReceived: 'WEBSOCKET/MESSAGE_RECEIVED',
+	onError: 'WEBSOCKET/ERROR',
+	changeUrl: 'WEBSOCKET/CHANGE_URL',
+};
