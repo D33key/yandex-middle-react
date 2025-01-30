@@ -1,12 +1,18 @@
+import generalAPI from '@/api/generalApi';
 import { WEBSOCKET_ACTIONS } from '@/constansts/websocketActions';
 import { AnyAction, Dispatch, MiddlewareAPI } from '@reduxjs/toolkit';
+import { WebSocketData, WebSocketOrder } from './slice';
+import { CategoriesType } from '@/types/burger-structure';
 
 type WebSocketMiddlewareOptions = {
 	url: string;
 	actions: typeof WEBSOCKET_ACTIONS;
 	onOpen?: (event: Event) => void;
 	onClose?: (event: CloseEvent) => void;
-	onMessage?: (event: MessageEvent) => void;
+	onMessage?: (
+		event: MessageEvent,
+		orders: WebSocketOrder[],
+	) => Promise<WebSocketOrder[]>;
 	onError?: (event: Event) => void;
 };
 
@@ -24,6 +30,14 @@ function createWebSocketMiddleware(options: WebSocketMiddlewareOptions) {
 					return;
 				}
 
+				if (action.payload?.url) {
+					currentUrl = action.payload.url;
+				}
+
+				if (action.payload?.token) {
+					currentUrl += `?token=${action.payload.token}`;
+				}
+
 				socket = new WebSocket(currentUrl);
 
 				socket.onopen = (event) => {
@@ -36,11 +50,17 @@ function createWebSocketMiddleware(options: WebSocketMiddlewareOptions) {
 					socket = null;
 				};
 
-				socket.onmessage = (event) => {
-					options.onMessage?.(event);
+				socket.onmessage = async (event) => {
+					if (event.data === 'ping') {
+						socket!.send('pong');
+
+						return;
+					}
+					const transformData = JSON.parse(event.data) as WebSocketData;
+					const data = await options.onMessage?.(event, transformData.orders);
 					store.dispatch({
 						type: actions.onMessageReceived,
-						payload: event.data,
+						payload: data,
 					});
 				};
 
@@ -90,4 +110,36 @@ function createWebSocketMiddleware(options: WebSocketMiddlewareOptions) {
 	};
 }
 
-export default createWebSocketMiddleware;
+const websocketMiddleware = createWebSocketMiddleware({
+	url: 'wss://norma.nomoreparties.space',
+	actions: WEBSOCKET_ACTIONS,
+	onMessage: async (_, orders) => {
+		const { data: ingredients } = (await generalAPI.getIngredients()) as {
+			data: CategoriesType[];
+		};
+
+		const transformOrder: WebSocketOrder[] = orders.map((order) => {
+			let sum = 0;
+			const ingredientsImg = order.ingredients.map((ingredient) => {
+				const findIngredient = ingredients.find(
+					(ingr) => ingr._id === ingredient,
+				);
+				console.log('sum', sum);
+				console.log('findIngredient!.price', findIngredient!.price);
+				sum += findIngredient!.price;
+
+				return findIngredient!.image;
+			});
+
+			return {
+				...order,
+				ingredients: ingredientsImg,
+				price: sum,
+			};
+		});
+
+		return transformOrder;
+	},
+});
+
+export default websocketMiddleware;

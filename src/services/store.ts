@@ -3,13 +3,9 @@ import authSlice from './auth';
 import burgerStructure from './burger-structure';
 import ingredients from './ingredients';
 import modalInfo from './modal';
-import createWebSocketMiddleware from './websocket/middleware';
 import { WEBSOCKET_ACTIONS } from '@/constansts/websocketActions';
-
-const websocketMiddleware = createWebSocketMiddleware({
-	url: 'wss://norma.nomoreparties.space',
-	actions: WEBSOCKET_ACTIONS,
-});
+import webSocketSlice from './websocket/slice';
+import websocketMiddleware from './websocket/middleware';
 
 export const store = configureStore({
 	reducer: {
@@ -17,6 +13,7 @@ export const store = configureStore({
 		burgerStructure,
 		modalInfo,
 		authSlice,
+		webSocketSlice,
 	},
 	middleware: (getDefaultMiddleware) =>
 		getDefaultMiddleware({
