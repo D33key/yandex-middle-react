@@ -13,6 +13,7 @@ export default function useOpenConnectionWebsocket(
 
 	useEffect(() => {
 		dispatch(createWebsocketConnection(url, token));
+
 		return () => {
 			if (import.meta.env.PROD) dispatch(disconnectWebSocket());
 		};

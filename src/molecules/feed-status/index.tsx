@@ -19,7 +19,7 @@ export default function FeedStatus({
 			<Typography size='medium'>{text}</Typography>
 			<div className={`flex flex-col gap-8 ${cl.statusWrapper}`}>
 				{arrayOfStatuses?.map((item) => (
-					<Typography extraClass={statusColor} type='digits'>
+					<Typography key={item.number} extraClass={statusColor} type='digits'>
 						{item.number}
 					</Typography>
 				))}

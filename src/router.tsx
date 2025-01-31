@@ -4,6 +4,7 @@ import Loader from './molecules/loader';
 import ProtectedLayout from './template/ProtectedLayout';
 import NonAuthLayout from './template/UnprotectedLayout';
 import HeaderLayout from './template/HeaderLayout';
+import { PAGE_URLS } from './constansts/page-urls';
 
 const Constructor = lazy(() => import('./pages/Constructor'));
 const Login = lazy(() => import('./pages/Login'));
@@ -15,6 +16,7 @@ const Ingredients = lazy(() => import('./pages/Ingredients'));
 const IngredientModal = lazy(() => import('./cells/ingredient-modal'));
 const FeedModal = lazy(() => import('./cells/feed-modal'));
 const Feed = lazy(() => import('./pages/Feed'));
+const FeedId = lazy(() => import('./pages/FeedId'));
 const ProfileLayout = lazy(() => import('./template/ProfileLayout'));
 
 export default function Router() {
@@ -29,12 +31,13 @@ export default function Router() {
 						<Route element={<ProfileLayout />}>
 							<Route path='/profile'>
 								<Route index element={<Profile />} />
-								<Route path='orders' element={<div>Заглушка</div>} />
+								<Route path={PAGE_URLS.orders} element={<div>Заглушка</div>} />
 							</Route>
 						</Route>
 					</Route>
 					<Route path='/ingredients/:id' element={<Ingredients />} />
 				</Route>
+
 				<Route element={<NonAuthLayout />}>
 					<Route path='/login' element={<Login />} />
 					<Route path='/register' element={<Register />} />
@@ -44,8 +47,9 @@ export default function Router() {
 
 				<Route element={<HeaderLayout />}>
 					<Route path='/' element={<Constructor />} />
+					<Route path='/feed' element={<Feed />} />
+					<Route path='/feed/:id' element={<FeedId />} />
 				</Route>
-				<Route path='/feed' element={<Feed />} />
 			</Routes>
 			{background?.pathname === '/' && (
 				<Routes>

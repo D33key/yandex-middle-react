@@ -7,6 +7,7 @@ export interface TitleProps {
 	children: React.ReactNode;
 	isWide?: boolean;
 	type?: 'digits-default' | 'main-large';
+	isCenter?: boolean;
 }
 
 export default function Title({
@@ -14,6 +15,7 @@ export default function Title({
 	as: Slot = 'h1',
 	isWide = false,
 	type = 'main-large',
+	isCenter = false,
 }: TitleProps) {
 	if (!TitleVariants.includes(Slot)) {
 		throw new Error('Unavailable Title type');
@@ -22,7 +24,7 @@ export default function Title({
 		<Slot
 			className={`text text_type_${type} ${cl[Slot] ?? ''} ${
 				isWide ? cl.wide : ''
-			}`}
+			} ${isCenter ? 'center' : ''}`}
 		>
 			{children}
 		</Slot>
