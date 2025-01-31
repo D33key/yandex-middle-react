@@ -1,26 +1,27 @@
 import { WEBSOCKET_ACTIONS } from '@/constansts/websocketActions';
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { FeedInfo } from '../modal/type';
 
-export interface WebSocketOrder {
+export interface WebSocketOrder<T = string[]> {
 	createdAt: string;
 	name: string;
 	number: string;
 	status: 'done' | 'in progress';
 	updatedAt: string;
 	_id: string;
-	ingredients: string[];
+	ingredients: T;
 	price?: number;
 }
 
-export interface WebSocketData {
+export interface WebSocketData<T = string[]> {
 	success: boolean;
 	total: number;
 	totalToday: number;
-	orders: WebSocketOrder[];
+	orders: WebSocketOrder<T>[];
 }
 
 interface WebSocketState {
-	data: WebSocketData | null;
+	data: WebSocketData<FeedInfo['ingredients']> | null;
 	connected: boolean;
 	error: string | null;
 }
@@ -46,7 +47,7 @@ const webSocketSlice = createSlice({
 			})
 			.addCase(
 				WEBSOCKET_ACTIONS.onMessageReceived,
-				(state, action: PayloadAction<WebSocketData>) => {
+				(state, action: PayloadAction<WebSocketState['data']>) => {
 					state.data = action.payload;
 				},
 			)

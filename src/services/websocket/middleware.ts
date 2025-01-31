@@ -2,7 +2,11 @@ import generalAPI from '@/api/generalApi';
 import { WEBSOCKET_ACTIONS } from '@/constansts/websocketActions';
 import { AnyAction, Dispatch, MiddlewareAPI } from '@reduxjs/toolkit';
 import { WebSocketData, WebSocketOrder } from './slice';
-import { CategoriesType } from '@/types/burger-structure';
+import type { CategoriesType } from '@/types/burger-structure';
+import type { FeedInfo } from '../modal/type';
+
+export type TransfromData = Omit<WebSocketOrder, 'ingredients'> &
+	FeedInfo['ingredients'];
 
 type WebSocketMiddlewareOptions = {
 	url: string;
@@ -12,7 +16,7 @@ type WebSocketMiddlewareOptions = {
 	onMessage?: (
 		event: MessageEvent,
 		orders: WebSocketOrder[],
-	) => Promise<WebSocketOrder[]>;
+	) => Promise<TransfromData[]>;
 	onError?: (event: Event) => void;
 };
 
@@ -60,7 +64,7 @@ function createWebSocketMiddleware(options: WebSocketMiddlewareOptions) {
 					const data = await options.onMessage?.(event, transformData.orders);
 					store.dispatch({
 						type: actions.onMessageReceived,
-						payload: data,
+						payload: { ...transformData, orders: data },
 					});
 				};
 
@@ -118,17 +122,21 @@ const websocketMiddleware = createWebSocketMiddleware({
 			data: CategoriesType[];
 		};
 
-		const transformOrder: WebSocketOrder[] = orders.map((order) => {
+		const transformOrder = orders.map((order) => {
 			let sum = 0;
+			
 			const ingredientsImg = order.ingredients.map((ingredient) => {
 				const findIngredient = ingredients.find(
 					(ingr) => ingr._id === ingredient,
 				);
-				console.log('sum', sum);
-				console.log('findIngredient!.price', findIngredient!.price);
+
 				sum += findIngredient!.price;
 
-				return findIngredient!.image;
+				return {
+					img: findIngredient!.image,
+					name: findIngredient!.name,
+					price: findIngredient!.price,
+				};
 			});
 
 			return {
@@ -138,7 +146,7 @@ const websocketMiddleware = createWebSocketMiddleware({
 			};
 		});
 
-		return transformOrder;
+		return transformOrder as unknown as TransfromData[];
 	},
 });
 

@@ -1,17 +1,18 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { CategoriesType } from '../../types/burger-structure';
 import { fetchOrder } from './asyncThunk';
-import { OrderInfo } from './type';
+import type { FeedInfo, OrderInfo } from './type';
 
 export const modalInfo = createSlice({
 	name: 'modalInfo',
 	initialState: null as
 		| CategoriesType
 		| OrderInfo
+		| FeedInfo
 		| { isLoading: boolean }
 		| null,
 	reducers: {
-		openModal: (state, action: PayloadAction<CategoriesType>) => {
+		openModal: (state, action: PayloadAction<CategoriesType | FeedInfo>) => {
 			state = action.payload;
 
 			return state;

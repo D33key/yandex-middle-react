@@ -4,4 +4,5 @@ export const PAGE_URLS = {
 	orders: '/profile/orders',
 	login: '/login',
 	ingredients: '/ingredients',
+	feed: '/feed',
 } as const;

@@ -5,3 +5,16 @@ export interface OrderInfo {
 	};
 	success: boolean;
 }
+
+export interface FeedInfo {
+	title: `#${string}`;
+	name: string;
+	status: string;
+	ingredients: {
+		img: string;
+		name: string;
+		price: number;
+	}[];
+	date: string;
+	totalPrice: number;
+}

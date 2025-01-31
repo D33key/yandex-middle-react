@@ -13,6 +13,7 @@ const ResetPassword = lazy(() => import('./pages/ResetPassword'));
 const Profile = lazy(() => import('./pages/Profile'));
 const Ingredients = lazy(() => import('./pages/Ingredients'));
 const IngredientModal = lazy(() => import('./cells/ingredient-modal'));
+const FeedModal = lazy(() => import('./cells/feed-modal'));
 const Feed = lazy(() => import('./pages/Feed'));
 const ProfileLayout = lazy(() => import('./template/ProfileLayout'));
 
@@ -35,19 +36,25 @@ export default function Router() {
 					<Route path='/ingredients/:id' element={<Ingredients />} />
 				</Route>
 				<Route element={<NonAuthLayout />}>
-					<Route element={<HeaderLayout />}>
-						<Route path='/' element={<Constructor />} />
-					</Route>
-					<Route path='/feed' element={<Feed />} />
 					<Route path='/login' element={<Login />} />
 					<Route path='/register' element={<Register />} />
 					<Route path='/forgot-password' element={<ForgotPassword />} />
 					<Route path='/reset-password' element={<ResetPassword />} />
 				</Route>
+
+				<Route element={<HeaderLayout />}>
+					<Route path='/' element={<Constructor />} />
+				</Route>
+				<Route path='/feed' element={<Feed />} />
 			</Routes>
-			{background && (
+			{background?.pathname === '/' && (
 				<Routes>
 					<Route path='/ingredients/:id' element={<IngredientModal />} />
+				</Routes>
+			)}
+			{background?.pathname === '/feed' && (
+				<Routes>
+					<Route path='/feed/:id' element={<FeedModal />} />
 				</Routes>
 			)}
 		</Suspense>
