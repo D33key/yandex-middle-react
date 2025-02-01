@@ -29,36 +29,43 @@ export default function Router() {
 				<Route element={<ProtectedLayout />}>
 					<Route element={<HeaderLayout />}>
 						<Route element={<ProfileLayout />}>
-							<Route path='/profile'>
+							<Route path={PAGE_URLS.profile}>
 								<Route index element={<Profile />} />
-								<Route path={PAGE_URLS.orders} element={<div>Заглушка</div>} />
+								<Route
+									path={PAGE_URLS.orders}
+									element={<Feed isForSpecificUser />}
+								/>
+								<Route
+									path={PAGE_URLS.ordersId}
+									element={<FeedId isForSpecificUser />}
+								/>
 							</Route>
 						</Route>
 					</Route>
-					<Route path='/ingredients/:id' element={<Ingredients />} />
+					<Route path={PAGE_URLS.ingredientsId} element={<Ingredients />} />
 				</Route>
 
 				<Route element={<NonAuthLayout />}>
-					<Route path='/login' element={<Login />} />
-					<Route path='/register' element={<Register />} />
-					<Route path='/forgot-password' element={<ForgotPassword />} />
-					<Route path='/reset-password' element={<ResetPassword />} />
+					<Route path={PAGE_URLS.login} element={<Login />} />
+					<Route path={PAGE_URLS.register} element={<Register />} />
+					<Route path={PAGE_URLS.forgotPassword} element={<ForgotPassword />} />
+					<Route path={PAGE_URLS.resetPassword} element={<ResetPassword />} />
 				</Route>
 
 				<Route element={<HeaderLayout />}>
-					<Route path='/' element={<Constructor />} />
-					<Route path='/feed' element={<Feed />} />
-					<Route path='/feed/:id' element={<FeedId />} />
+					<Route path={PAGE_URLS.main} element={<Constructor />} />
+					<Route path={PAGE_URLS.feed} element={<Feed />} />
+					<Route path={PAGE_URLS.feedId} element={<FeedId />} />
 				</Route>
 			</Routes>
-			{background?.pathname === '/' && (
+			{background?.pathname === PAGE_URLS.main && (
 				<Routes>
-					<Route path='/ingredients/:id' element={<IngredientModal />} />
+					<Route path={PAGE_URLS.ingredientsId} element={<IngredientModal />} />
 				</Routes>
 			)}
-			{background?.pathname === '/feed' && (
+			{background?.pathname === PAGE_URLS.feed && (
 				<Routes>
-					<Route path='/feed/:id' element={<FeedModal />} />
+					<Route path={PAGE_URLS.feedId} element={<FeedModal />} />
 				</Routes>
 			)}
 		</Suspense>

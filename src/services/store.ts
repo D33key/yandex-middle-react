@@ -21,6 +21,7 @@ export const store = configureStore({
 				// Возникает ошибка при onError как Non-Serializable Data
 				// @ts-expect-error Непонятно, почему здесь ошибка
 				ignoreActions: [WEBSOCKET_ACTIONS.onError],
+				
 			},
 		}).concat(websocketMiddleware as Middleware),
 	devTools: import.meta.env.MODE !== 'production',

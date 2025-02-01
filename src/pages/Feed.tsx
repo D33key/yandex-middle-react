@@ -5,16 +5,20 @@ import useOpenConnectionWebsocket from '@/helpers/hooks/useOpenConnectionWebsock
 import FeedInfo from '@/molecules/feed-info';
 import FeedCardsList from '@/organisms/feed-cards-list/FeedCardsList';
 
-export default function Feed() {
-	useOpenConnectionWebsocket();
+export default function Feed({
+	isForSpecificUser = false,
+}: {
+	isForSpecificUser?: boolean;
+}) {
+	useOpenConnectionWebsocket(isForSpecificUser);
 
 	return (
 		<Main>
 			<Section>
-				<Title>Лента заказов</Title>
+				{!isForSpecificUser && <Title>Лента заказов</Title>}
 				<div className='flex'>
 					<FeedCardsList />
-					<FeedInfo />
+					{!isForSpecificUser && <FeedInfo />}
 				</div>
 			</Section>
 		</Main>

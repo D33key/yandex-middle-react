@@ -2,9 +2,12 @@ import type { FeedInfo } from '@/services/modal/type';
 import useOpenConnectionWebsocket from '../useOpenConnectionWebsocket';
 import { useAppSelector } from '../useRTK';
 
-export default function useGetFeedCardInfoById(id: string): FeedInfo | null {
+export default function useGetFeedCardInfoById(
+	id: string,
+	isForSpecificUser = false,
+): FeedInfo | null {
 	const { data } = useAppSelector((state) => state.webSocketSlice);
-	useOpenConnectionWebsocket();
+	useOpenConnectionWebsocket(isForSpecificUser);
 
 	if (!data) return null;
 

@@ -44,6 +44,7 @@ const webSocketSlice = createSlice({
 			})
 			.addCase(WEBSOCKET_ACTIONS.onDisconnected, (state) => {
 				state.connected = false;
+				state.data = null;
 			})
 			.addCase(
 				WEBSOCKET_ACTIONS.onMessageReceived,

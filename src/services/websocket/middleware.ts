@@ -41,9 +41,7 @@ function createWebSocketMiddleware(options: WebSocketMiddlewareOptions) {
 				if (action.payload?.token) {
 					currentUrl += `?token=${action.payload.token}`;
 				}
-
 				socket = new WebSocket(currentUrl);
-
 				socket.onopen = (event) => {
 					options.onOpen?.(event);
 					store.dispatch({ type: actions.onConnected });
@@ -70,7 +68,7 @@ function createWebSocketMiddleware(options: WebSocketMiddlewareOptions) {
 
 				socket.onerror = (event) => {
 					options.onError?.(event);
-					store.dispatch({ type: actions.onError, payload: event });
+					store.dispatch({ type: actions.onError, payload: 'Возникла ошибка' });
 				};
 
 				break;
@@ -79,8 +77,9 @@ function createWebSocketMiddleware(options: WebSocketMiddlewareOptions) {
 			case actions.disconnect: {
 				if (socket !== null) {
 					socket.close();
+					socket = null;
 				}
-				socket = null;
+				store.dispatch({ type: actions.onDisconnected });
 				break;
 			}
 
@@ -124,20 +123,24 @@ const websocketMiddleware = createWebSocketMiddleware({
 
 		const transformOrder = orders.map((order) => {
 			let sum = 0;
-			
-			const ingredientsImg = order.ingredients.map((ingredient) => {
-				const findIngredient = ingredients.find(
-					(ingr) => ingr._id === ingredient,
-				);
 
-				sum += findIngredient!.price;
+			const ingredientsImg = order.ingredients
+				.map((ingredient) => {
+					if (!ingredient) return;
 
-				return {
-					img: findIngredient!.image,
-					name: findIngredient!.name,
-					price: findIngredient!.price,
-				};
-			});
+					const findIngredient = ingredients.find(
+						(ingr) => ingr._id === ingredient,
+					);
+
+					sum += findIngredient!.price;
+
+					return {
+						img: findIngredient!.image,
+						name: findIngredient!.name,
+						price: findIngredient!.price,
+					};
+				})
+				.filter(Boolean);
 
 			return {
 				...order,
