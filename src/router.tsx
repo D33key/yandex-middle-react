@@ -35,12 +35,12 @@ export default function Router() {
 									path={PAGE_URLS.orders}
 									element={<Feed isForSpecificUser />}
 								/>
-								<Route
-									path={PAGE_URLS.ordersId}
-									element={<FeedId isForSpecificUser />}
-								/>
 							</Route>
 						</Route>
+						<Route
+							path={PAGE_URLS.ordersId}
+							element={<FeedId isForSpecificUser />}
+						/>
 					</Route>
 					<Route path={PAGE_URLS.ingredientsId} element={<Ingredients />} />
 				</Route>
@@ -66,6 +66,11 @@ export default function Router() {
 			{background?.pathname === PAGE_URLS.feed && (
 				<Routes>
 					<Route path={PAGE_URLS.feedId} element={<FeedModal />} />
+				</Routes>
+			)}
+			{background?.pathname === PAGE_URLS.orders && (
+				<Routes>
+					<Route path={PAGE_URLS.ordersId} element={<FeedModal />} />
 				</Routes>
 			)}
 		</Suspense>

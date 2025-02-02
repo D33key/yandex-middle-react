@@ -35,12 +35,13 @@ export default function FeedCard({
 }: FeedCardProps) {
 	const dispatch = useAppDispatch();
 	const location = useLocation();
+	const url = isForSpecificUser ? PAGE_URLS.orders : PAGE_URLS.feed;
 	const statusText = stText[status];
 	const statusColor = status === 'done' ? 'aqua' : 'red';
 
 	return (
 		<Link
-			to={`${PAGE_URLS.feed}/${linkId}`}
+			to={`${url}/${linkId}`}
 			onClick={() =>
 				dispatch(
 					openModal({
