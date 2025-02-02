@@ -1,3 +1,5 @@
+import type { statusText } from '@/constansts/statusText';
+
 export interface OrderInfo {
 	name: string;
 	order: {
@@ -9,7 +11,7 @@ export interface OrderInfo {
 export interface FeedInfo {
 	title: `#${string}`;
 	name: string;
-	status: string;
+	status: keyof typeof statusText;
 	ingredients: {
 		img: string;
 		name: string;

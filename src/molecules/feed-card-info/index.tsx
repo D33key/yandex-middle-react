@@ -6,6 +6,7 @@ import transformIngredientsWithCount from '@/helpers/utils/transformIngredientsW
 import type { FeedInfo } from '@/services/modal/type';
 import IngredientRow from '../ingredient-row';
 import cl from './FeedCardInfo.module.css';
+import { statusText as stText } from '@/constansts/statusText';
 
 function FeedCardInfo({
 	cardInfo,
@@ -18,7 +19,7 @@ function FeedCardInfo({
 		cardInfo.ingredients,
 	);
 
-	const statusText = cardInfo.status === 'done' ? 'Выполнено' : 'В процесса';
+	const statusText = stText[cardInfo.status];
 	const statusColor = cardInfo.status === 'done' ? 'aqua' : 'red';
 	return (
 		<div className='flex flex-col'>

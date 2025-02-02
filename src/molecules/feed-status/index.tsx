@@ -1,11 +1,12 @@
 import Typography from '@/atoms/typography/Typography';
 import { useAppSelector } from '@/helpers/hooks/useRTK';
 import cl from './FeedStatus.module.css';
+import { statusText } from '@/constansts/statusText';
 
 export default function FeedStatus({
 	status,
 }: {
-	status: 'done' | 'in progress';
+	status: keyof typeof statusText;
 }) {
 	const text = status === 'done' ? 'Готовы:' : 'В работе:';
 	const statusColor = status === 'done' ? 'aqua' : 'red';

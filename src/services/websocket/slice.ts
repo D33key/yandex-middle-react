@@ -1,12 +1,13 @@
 import { WEBSOCKET_ACTIONS } from '@/constansts/websocketActions';
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { FeedInfo } from '../modal/type';
+import { statusText } from '@/constansts/statusText';
 
 export interface WebSocketOrder<T = string[]> {
 	createdAt: string;
 	name: string;
 	number: string;
-	status: 'done' | 'in progress';
+	status: keyof typeof statusText;
 	updatedAt: string;
 	_id: string;
 	ingredients: T;

@@ -13,7 +13,7 @@ export default function FeedInfo() {
 				<>
 					<div className='flex justify-between gap-36'>
 						<FeedStatus status='done' />
-						<FeedStatus status='in progress' />
+						<FeedStatus status='pending' />
 					</div>
 					<TextWithBigNumber
 						text='Выполнено за все время:'

@@ -8,6 +8,7 @@ import { useAppDispatch } from '@/helpers/hooks/useRTK';
 import { openModal } from '@/services/modal';
 import type { FeedInfo } from '@/services/modal/type';
 import FormattedDate from '@/atoms/formatted-date';
+import { statusText } from '@/constansts/statusText';
 
 interface FeedCardProps {
 	linkId: string;
@@ -16,7 +17,7 @@ interface FeedCardProps {
 	name: string;
 	price: number;
 	ingredients: FeedInfo['ingredients'];
-	status: 'done' | 'in progress';
+	status: keyof typeof statusText;
 }
 
 export default function FeedCard({
