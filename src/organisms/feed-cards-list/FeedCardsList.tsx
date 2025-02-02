@@ -4,7 +4,11 @@ import EmptyCart from '@/molecules/empty-cart';
 import Loader from '@/molecules/loader';
 import cl from './FeedCardsList.module.css';
 
-function FeedCardsList() {
+function FeedCardsList({
+	isForSpecificUser = false,
+}: {
+	isForSpecificUser?: boolean;
+}) {
 	const { data } = useAppSelector((state) => state.webSocketSlice);
 	return (
 		<div className={`${cl.wrapper} flex justify-between flex-col gap-16`}>
@@ -21,6 +25,7 @@ function FeedCardsList() {
 						price={order.price!}
 						ingredients={order.ingredients}
 						status={order.status}
+						isForSpecificUser={isForSpecificUser}
 					/>
 				))}
 			{data && data.orders.length === 0 && <EmptyCart text='Пусто' />}

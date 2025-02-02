@@ -9,6 +9,8 @@ import { openModal } from '@/services/modal';
 import type { FeedInfo } from '@/services/modal/type';
 import FormattedDate from '@/atoms/formatted-date';
 import { statusText } from '@/constansts/statusText';
+import Caption from '@/atoms/caption';
+import { statusText as stText } from '@/constansts/statusText';
 
 interface FeedCardProps {
 	linkId: string;
@@ -18,6 +20,7 @@ interface FeedCardProps {
 	price: number;
 	ingredients: FeedInfo['ingredients'];
 	status: keyof typeof statusText;
+	isForSpecificUser?: boolean;
 }
 
 export default function FeedCard({
@@ -28,9 +31,12 @@ export default function FeedCard({
 	ingredients,
 	linkId,
 	status,
+	isForSpecificUser = false,
 }: FeedCardProps) {
 	const dispatch = useAppDispatch();
 	const location = useLocation();
+	const statusText = stText[status];
+	const statusColor = status === 'done' ? 'aqua' : 'red';
 
 	return (
 		<Link
@@ -55,8 +61,13 @@ export default function FeedCard({
 					<Typography type='digits'>#{id}</Typography>
 					<FormattedDate date={dateFromServer} />
 				</div>
+				<div className='flex flex-col gap-8'>
+					<Typography size='medium'>{name}</Typography>
 
-				<Typography size='medium'>{name}</Typography>
+					{isForSpecificUser && (
+						<Caption color={statusColor}>{statusText}</Caption>
+					)}
+				</div>
 
 				<div className='flex justify-between'>
 					<IngredientCircleList ingredients={ingredients} />

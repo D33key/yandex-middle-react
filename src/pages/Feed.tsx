@@ -17,7 +17,7 @@ export default function Feed({
 			<Section>
 				{!isForSpecificUser && <Title>Лента заказов</Title>}
 				<div className='flex'>
-					<FeedCardsList />
+					<FeedCardsList isForSpecificUser={isForSpecificUser}/>
 					{!isForSpecificUser && <FeedInfo />}
 				</div>
 			</Section>
