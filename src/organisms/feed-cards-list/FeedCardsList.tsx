@@ -18,7 +18,7 @@ function FeedCardsList({
 				data.orders.map((order) => (
 					<FeedCard
 						key={order._id}
-						linkId={order._id}
+						linkId={order.number}
 						dateFromServer={order.createdAt}
 						id={order.number}
 						name={order.name}
