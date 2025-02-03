@@ -19,6 +19,11 @@ class GeneralApi extends BaseApi {
 		const response = await this.post(URLS.orders, {
 			data,
 			signal,
+			headers: {
+				extends: true,
+				withToken: true,
+			},
+			shouldRevalidateIfTokenExpired: true,
 			withCredentials: 'same-origin',
 		});
 

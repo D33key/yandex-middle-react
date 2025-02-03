@@ -1,0 +1,13 @@
+.wrapper {
+	width: 272px;
+}
+
+.statusWrapper {
+	max-height: 152px;
+	overflow-y: hidden;
+}
+
+.statusWrapper:has(> *:nth-child(5)) {
+	padding-right: 24px;
+	overflow-y: auto;
+}

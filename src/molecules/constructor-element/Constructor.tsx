@@ -17,6 +17,8 @@ export interface ElementProps {
 function Element({ item, index }: ElementProps) {
 	const ref = useRef<HTMLDivElement | null>(null);
 	const dispatch = useAppDispatch();
+	const type = item?.align as 'top' | 'bottom' | undefined;
+	const addPostFix = (type && (type === 'top' ? ' (верх)' : ' (низ)')) ?? '';
 
 	const { drag, drop } = useDnD({ index, itemId: item._id, ref });
 
@@ -26,9 +28,9 @@ function Element({ item, index }: ElementProps) {
 		<div ref={ref} className={cl.item}>
 			{!item?.isLocked && <DragIcon type='primary' />}
 			<ConstructorElementYandex
-				type={item?.align as 'top' | 'bottom' | undefined}
+				type={type}
 				isLocked={item?.isLocked}
-				text={item.name}
+				text={item.name + addPostFix}
 				price={item.price}
 				thumbnail={item.image}
 				handleClose={() => {

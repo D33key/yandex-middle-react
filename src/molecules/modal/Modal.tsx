@@ -1,19 +1,23 @@
 import { createPortal } from 'react-dom';
 import cl from './Modal.module.css';
 import { CloseIcon } from '@ya.praktikum/react-developer-burger-ui-components';
-import Title from '@/atoms/heading/Title';
+import Title, { TitleProps } from '@/atoms/heading/Title';
 import { useCloseModalWhenPress } from '@/helpers/hooks/useCloseModalWhenPress';
+import { useLocation, useNavigate } from 'react-router';
 
 interface ModalProps {
 	headerTitle?: string | null;
 	onClose: () => void;
 	children: React.ReactNode;
+	headerType?: TitleProps['type'];
+	shouldReplaceUrlWhenClose?: boolean;
 }
 
 type OverlayProps = Omit<ModalProps, 'headerTitle'>;
 
 export default function Modal({
 	headerTitle = null,
+	headerType,
 	onClose,
 	children,
 }: ModalProps) {
@@ -23,7 +27,7 @@ export default function Modal({
 		<Modal.Overlay onClose={onClose}>
 			<div className='flex justify-between items-center'>
 				{headerTitle && (
-					<Title as='h3' isWide>
+					<Title as='h3' isWide type={headerType}>
 						{headerTitle}
 					</Title>
 				)}
@@ -41,8 +45,22 @@ export default function Modal({
 }
 
 function Overlay({ children, onClose }: OverlayProps) {
+	const navigate = useNavigate();
+	const location = useLocation();
+
+	const handleClose = () => {
+		const background = location.state?.background;
+		navigate(background?.pathname || '/', { replace: true });
+	};
+	
 	return (
-		<div className={cl.overlay} onClick={onClose}>
+		<div
+			className={cl.overlay}
+			onClick={() => {
+				onClose();
+				handleClose();
+			}}
+		>
 			<div className={cl.content} onClick={(e) => e.stopPropagation()}>
 				{children}
 			</div>

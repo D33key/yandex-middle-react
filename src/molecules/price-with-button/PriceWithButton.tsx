@@ -1,7 +1,6 @@
-import { CurrencyIcon } from '@ya.praktikum/react-developer-burger-ui-components';
-import cl from './PriceWithButton.module.css';
-import Typography from '@/atoms/typography/Typography';
 import Button from '@/atoms/button';
+import Price from '@/atoms/price';
+import cl from './PriceWithButton.module.css';
 
 interface PriceWithButtonProps {
 	amount: number;
@@ -14,12 +13,7 @@ export default function PriceWithButton({
 }: PriceWithButtonProps) {
 	return (
 		<div className={cl.amountWrapper}>
-			<div className={cl.amount}>
-				<Typography type='digits' size='medium'>
-					{amount}
-				</Typography>
-				<CurrencyIcon type='primary' />
-			</div>
+			<Price amount={amount} />
 			<Button
 				htmlType='button'
 				type='primary'

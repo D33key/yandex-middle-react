@@ -116,6 +116,10 @@ a {
 	margin-top: 120px;
 }
 
+.m-top-24 {
+	margin-top: 24px;
+}
+
 .m-right-auto {
 	margin-right: auto;
 }
@@ -123,8 +127,14 @@ a {
 	margin-left: auto;
 }
 
+.m-left-60 {
+	margin-left: 60px;
+}
 .m-right-60 {
 	margin-right: 60px;
+}
+.m-bottom-60 {
+	margin-bottom: 60px;
 }
 
 .p-horizontal-none {
@@ -138,4 +148,47 @@ a {
 
 .margin-top-80px {
 	margin-top: 80px;
+}
+
+.gap-8 {
+	gap: 8px;
+}
+.gap-12 {
+	gap: 12px;
+}
+.gap-16 {
+	gap: 16px;
+}
+.gap-24 {
+	gap: 24px;
+}
+
+.gap-36 {
+	gap: 36px;
+}
+
+.gap-60 {
+	gap: 60px;
+}
+
+.aqua {
+	color: rgba(0, 204, 204, 1);
+}
+
+.red {
+	color: rgb(233, 80, 80);
+}
+
+.digit-shadow {
+	text-shadow: 0px 0px 16px rgba(51, 51, 255, 0.5),
+		0px 0px 8px rgba(51, 51, 255, 0.5);
+}
+
+.center {
+	text-align: center;
+}
+
+.content-feed-id {
+	max-width: 684px;
+	padding: 40px 40px 60px 40px;
 }
