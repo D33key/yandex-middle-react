@@ -1,4 +1,5 @@
 import Link from '@/atoms/link/Link';
+import { NavLink } from 'react-router';
 import { PAGE_URLS } from '@/constansts/page-urls';
 import {
 	BurgerIcon,
@@ -20,7 +21,9 @@ export default function AppHeader() {
 				</Link>
 			</div>
 			<div className={cl.logo}>
-				<Logo />
+				<NavLink to={PAGE_URLS.main}>
+					<Logo />
+				</NavLink>
 			</div>
 			<Link to={PAGE_URLS.profile} Icon={ProfileIcon}>
 				Личный кабинет
