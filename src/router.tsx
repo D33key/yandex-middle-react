@@ -26,8 +26,8 @@ export default function Router() {
 	return (
 		<Suspense fallback={<Loader />}>
 			<Routes location={background ?? location}>
-				<Route element={<ProtectedLayout />}>
-					<Route element={<HeaderLayout />}>
+				<Route element={<HeaderLayout />}>
+					<Route element={<ProtectedLayout />}>
 						<Route element={<ProfileLayout />}>
 							<Route path={PAGE_URLS.profile}>
 								<Route index element={<Profile />} />
@@ -42,17 +42,18 @@ export default function Router() {
 							element={<FeedId isForSpecificUser />}
 						/>
 					</Route>
+
+					<Route element={<NonAuthLayout />}>
+						<Route path={PAGE_URLS.login} element={<Login />} />
+						<Route path={PAGE_URLS.register} element={<Register />} />
+						<Route
+							path={PAGE_URLS.forgotPassword}
+							element={<ForgotPassword />}
+						/>
+						<Route path={PAGE_URLS.resetPassword} element={<ResetPassword />} />
+					</Route>
 					<Route path={PAGE_URLS.ingredientsId} element={<Ingredients />} />
-				</Route>
 
-				<Route element={<NonAuthLayout />}>
-					<Route path={PAGE_URLS.login} element={<Login />} />
-					<Route path={PAGE_URLS.register} element={<Register />} />
-					<Route path={PAGE_URLS.forgotPassword} element={<ForgotPassword />} />
-					<Route path={PAGE_URLS.resetPassword} element={<ResetPassword />} />
-				</Route>
-
-				<Route element={<HeaderLayout />}>
 					<Route path={PAGE_URLS.main} element={<Constructor />} />
 					<Route path={PAGE_URLS.feed} element={<Feed />} />
 					<Route path={PAGE_URLS.feedId} element={<FeedId />} />
