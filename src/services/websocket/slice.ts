@@ -6,7 +6,7 @@ import { statusText } from '@/constansts/statusText';
 export interface WebSocketOrder<T = string[]> {
 	createdAt: string;
 	name: string;
-	number: string;
+	number: number;
 	status: keyof typeof statusText;
 	updatedAt: string;
 	_id: string;
