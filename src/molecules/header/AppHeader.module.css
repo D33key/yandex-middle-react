@@ -26,6 +26,15 @@
 		flex: 1 0;
 	}
 
+	a {
+		margin: 0 auto;
+
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		flex: 6;
+	}
+
 	svg {
 		flex: 6 0;
 	}

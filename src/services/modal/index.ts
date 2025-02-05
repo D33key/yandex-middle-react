@@ -1,18 +1,24 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { CategoriesType } from '../../types/burger-structure';
 import { fetchOrder } from './asyncThunk';
-import { OrderInfo } from './type';
+import type { FeedInfo, OrderInfo } from './type';
+
+//@ts-expect-error Parse не обрабатывает ''
+const initialState = (JSON.parse(localStorage.getItem('modalInfo') ?? null) ??
+	null) as
+	| CategoriesType
+	| OrderInfo
+	| FeedInfo
+	| { isLoading: boolean }
+	| null;
 
 export const modalInfo = createSlice({
 	name: 'modalInfo',
-	initialState: null as
-		| CategoriesType
-		| OrderInfo
-		| { isLoading: boolean }
-		| null,
+	initialState,
 	reducers: {
-		openModal: (state, action: PayloadAction<CategoriesType>) => {
+		openModal: (state, action: PayloadAction<CategoriesType | FeedInfo>) => {
 			state = action.payload;
+			localStorage.setItem('modalInfo', JSON.stringify(action.payload));
 
 			return state;
 		},
