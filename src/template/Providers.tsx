@@ -6,11 +6,7 @@ import { store } from '@/services/store';
 
 export default function Providers({ children }: { children: React.ReactNode }) {
 	return (
-		<BrowserRouter
-			basename={
-				process.env.NODE_ENV === 'production' ? '/yandex-middle-react' : '/'
-			}
-		>
+		<BrowserRouter basename={process.env.PUBLIC_URL}>
 			<Provider store={store}>
 				<DndProvider backend={HTML5Backend}>{children}</DndProvider>
 			</Provider>
