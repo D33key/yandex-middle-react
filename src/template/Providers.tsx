@@ -6,7 +6,7 @@ import { store } from '@/services/store';
 
 export default function Providers({ children }: { children: React.ReactNode }) {
 	return (
-		<BrowserRouter>
+		<BrowserRouter basename='/spaceBurgers'>
 			<Provider store={store}>
 				<DndProvider backend={HTML5Backend}>{children}</DndProvider>
 			</Provider>
