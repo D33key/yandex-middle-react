@@ -1,4 +1,4 @@
-import type { TextWithLinkProps } from '../../molecules/text-with-link/TextWithLink';
+import { TextWithLinkProps } from '@/types/TextWithLink';
 
 export const LOGIN_LINKS: TextWithLinkProps['array'] = [
 	{

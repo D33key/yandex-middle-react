@@ -13,8 +13,8 @@ import Caption from '@/atoms/caption';
 import { statusText as stText } from '@/constansts/statusText';
 
 interface FeedCardProps {
-	linkId: string;
-	id: string;
+	linkId: number;
+	id: number;
 	dateFromServer: string;
 	name: string;
 	price: number;

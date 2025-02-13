@@ -52,7 +52,7 @@ export const authSlice = createSlice({
 				console.error('Ошибка регистрации: ', action.payload);
 			})
 
-			.addCase(fetchAuthCheckUser.fulfilled, (state, action) => {
+			.addCase(fetchAuthCheckUser.fulfilled, (_, action) => {
 				if (action.payload) {
 					if (action.payload.accessToken) {
 						setCookie('accessToken', action.payload.accessToken, 1);
