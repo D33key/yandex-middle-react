@@ -1,0 +1,1 @@
+import{r as a,j as o,d as u}from"./index-DK97D4BR.js";function x(t){const[e,r]=a.useState("");return o.jsx(u.PasswordInput,{...t,onChange:s=>r(s.target.value),value:e,errorText:t.errorText,size:t.size??"default"})}export{x as P};

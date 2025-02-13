@@ -1,0 +1,1 @@
+import{j as s,T as m,d as o}from"./index-DK97D4BR.js";const e="_amount_1m4zf_1",i={amount:e};function p({amount:t,size:n="medium",withCount:r,extraClass:a=""}){return s.jsxs("div",{className:`${i.amount} ${a}`,children:[s.jsxs(m,{type:"digits",size:n,children:[r&&`${r} x `,t]}),s.jsx(o.CurrencyIcon,{type:"primary"})]})}export{p as P};

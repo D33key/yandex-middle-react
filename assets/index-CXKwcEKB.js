@@ -1,0 +1,1 @@
+import{r,u as a,a as n,j as o,s as i}from"./index-DK97D4BR.js";import{I as p}from"./IngredientDetails-CybHxfJB.js";import{M as d}from"./Modal-Dhdd_OPa.js";import"./Title-BSmW3SQs.js";function c(){const e=a(s=>s.modalInfo),t=n();return e&&"type"in e&&o.jsx(d,{headerTitle:"Детали ингредиента",onClose:()=>t(i()),children:o.jsx(p,{product:e})})}const f=r.memo(c);export{f as default};

@@ -1,0 +1,1 @@
+import{u as p,j as r}from"./index-DK97D4BR.js";function c({array:s}){const n=p(e=>{var t;return(t=e.authSlice)==null?void 0:t.user});return s.map(e=>{const t=e.component,o={...e};return delete o.component,r.jsx(t,{...o,value:(n==null?void 0:n[o.name])??""},o.id)})}export{c as default};

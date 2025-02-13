@@ -1,0 +1,1 @@
+import{j as t}from"./index-DK97D4BR.js";const r={center:"flex flex-col h-screen justify-center",wide:""};function c({children:e,variant:n="wide",className:s=""}){return t.jsx("main",{className:r[n]+" "+s,children:e})}export{c as M};
