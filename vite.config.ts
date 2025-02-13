@@ -10,5 +10,5 @@ export default defineConfig({
 		},
 	},
 	plugins: [react(), tsconfigPaths()],
-	base: process.env.NODE_ENV === 'production' ? '/yandex-middle-react/' : '/',
+	base: process.env.NODE_ENV === 'production' ? './yandex-middle-react/' : './',
 });
