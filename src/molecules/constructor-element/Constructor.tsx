@@ -42,7 +42,11 @@ function Element({ item, index }: ElementProps) {
 }
 
 function Wrapper({ children }: { children: React.ReactNode }) {
-	return <div className={cl.constructorElements}>{children}</div>;
+	return (
+		<div className={cl.constructorElements}>
+			{children}
+		</div>
+	);
 }
 
 Element.Wrapper = Wrapper;

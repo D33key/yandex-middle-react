@@ -21,7 +21,7 @@ export interface WebSocketData<T = string[]> {
 	orders: WebSocketOrder<T>[];
 }
 
-interface WebSocketState {
+export interface WebSocketState {
 	data: WebSocketData<FeedInfo['ingredients']> | null;
 	connected: boolean;
 	error: string | null;

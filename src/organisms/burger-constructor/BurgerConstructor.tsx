@@ -26,6 +26,7 @@ function Wrapper({ children }: { children: React.ReactNode }) {
 				drop(el);
 			}}
 			className={cl.wrapper}
+			data-testid='dropzone'
 		>
 			{children}
 		</div>
