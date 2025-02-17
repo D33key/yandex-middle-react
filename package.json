@@ -7,10 +7,13 @@
 	"scripts": {
 		"dev": "vite",
 		"build": "tsc -b && vite build",
+		"check:build": "vite preview",
 		"lint": "eslint .",
 		"preview": "vite preview",
 		"predeploy": "npm run build",
-		"deploy": "gh-pages -d build"
+		"deploy": "gh-pages -d dist",
+		"test": "vitest",
+		"cx:open": "cypress open"
 	},
 	"dependencies": {
 		"@babel/runtime": "^7.26.0",
@@ -30,20 +33,25 @@
 		"uuid4": "^2.0.3"
 	},
 	"devDependencies": {
+		"@cypress/vite-dev-server": "^6.0.2",
 		"@eslint/js": "^9.13.0",
 		"@types/node": "^22.10.1",
 		"@types/react": "^19.0.1",
 		"@types/react-dom": "^19.0.2",
 		"@types/uuid4": "^2.0.3",
 		"@vitejs/plugin-react": "^4.3.3",
+		"cypress": "^14.0.3",
 		"eslint": "^9.13.0",
 		"eslint-plugin-react-hooks": "^5.0.0",
 		"eslint-plugin-react-refresh": "^0.4.14",
 		"gh-pages": "^6.3.0",
 		"globals": "^15.11.0",
+		"jsdom": "^26.0.0",
+		"start-server-and-test": "^2.0.10",
 		"typescript": "~5.6.2",
 		"typescript-eslint": "^8.11.0",
 		"vite": "^5.4.10",
-		"vite-tsconfig-paths": "^5.1.4"
+		"vite-tsconfig-paths": "^5.1.4",
+		"vitest": "^3.0.5"
 	}
 }

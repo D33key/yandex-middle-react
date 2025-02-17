@@ -12,7 +12,7 @@ export default function PriceWithButton({
 	handleSubmit,
 }: PriceWithButtonProps) {
 	return (
-		<div className={cl.amountWrapper}>
+		<div className={cl.amountWrapper} data-type='submitButton'>
 			<Price amount={amount} />
 			<Button
 				htmlType='button'

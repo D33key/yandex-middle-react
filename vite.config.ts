@@ -4,11 +4,14 @@ import tsconfigPaths from 'vite-tsconfig-paths';
 
 // https://vite.dev/config/
 export default defineConfig({
+	build: {},
 	resolve: {
 		alias: {
 			'@': '/src',
 		},
 	},
 	plugins: [react(), tsconfigPaths()],
-	base: process.env.NODE_ENV === 'production' ? '/yandex-middle-react/' : '/',
+	server: {
+		port: 8000,
+	},
 });
