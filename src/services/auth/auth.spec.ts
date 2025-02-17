@@ -113,4 +113,11 @@ describe('authSlice reducer', () => {
 
 		expect(newState).toEqual({ user });
 	});
+
+	it('should return initial state for unknown action type', () => {
+    const action = { type: 'SOME_UNKNOWN_ACTION' };
+    const newState = authReducer(initialState, action);
+
+    expect(newState).toEqual(initialState);
+});
 });

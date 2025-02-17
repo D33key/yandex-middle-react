@@ -1,2 +1,3 @@
-## TODO
-LINKS => as const obj
+## Deploy link
+
+[Ссылка](https://d33key.github.io/yandex-middle-react/)
